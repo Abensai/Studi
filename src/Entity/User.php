@@ -230,8 +230,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getUsername()
+    public function getUsername(): User
     {
-        // TODO: Implement getUsername() method.
+        return $this;
     }
 }
