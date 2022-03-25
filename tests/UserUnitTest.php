@@ -7,37 +7,43 @@ use App\Entity\User;
 
 class UserUnitTest extends TestCase
 {
+    private const EMAIL_TEST = 'ali@test.com';
+    private const PRENOM_TEST = 'Ali';
+    private const NOM_TEST = 'BEN SAIAD';
+    private const PASSWORD_TEST = 'password';
+    private const TELEPHONE_TEST = '+(33)0606060606';
+
     public function testIsTrue(): void
     {
         $user = new User();
 
-        $user->setEmail('ali@test.com')
-            ->setPrenom('Ali')
-            ->setNom('BEN SAIAD')
-            ->setPassword('password')
-            ->setTelephone('+(33)0606060606');
+        $user->setEmail(self::EMAIL_TEST)
+            ->setPrenom(self::PRENOM_TEST)
+            ->setNom(self::NOM_TEST)
+            ->setPassword(self::PASSWORD_TEST)
+            ->setTelephone(self::TELEPHONE_TEST);
 
-        $this->assertTrue($user->getEmail() == 'ali@test.com');
-        $this->assertTrue($user->getPrenom() == 'Ali');
-        $this->assertTrue($user->getNom() == 'BEN SAIAD');
-        $this->assertTrue($user->getPassword() == 'password');
-        $this->assertTrue($user->getTelephone() == '+(33)0606060606');
+        $this->assertEquals($user->getEmail() == self::EMAIL_TEST);
+        $this->assertEquals($user->getPrenom() == self::PRENOM_TEST);
+        $this->assertEquals($user->getNom() == self::NOM_TEST);
+        $this->assertEquals($user->getPassword() == self::PASSWORD_TEST);
+        $this->assertEquals($user->getTelephone() == self::TELEPHONE_TEST);
     }
 
     public function testIsFalse(): void
     {
         $user = new User();
 
-        $user->setEmail('ali@test.com')
-            ->setPrenom('Ali')
-            ->setNom('BEN SAIAD')
-            ->setPassword('password')
-            ->setTelephone('+(33)0606060606');
+        $user->setEmail(self::EMAIL_TEST)
+            ->setPrenom(self::PRENOM_TEST)
+            ->setNom(self::NOM_TEST)
+            ->setPassword(self::PASSWORD_TEST)
+            ->setTelephone(self::TELEPHONE_TEST);
 
-        $this->assertFalse($user->getEmail() == 'alain@test.com');
-        $this->assertFalse($user->getPrenom() == 'Alain');
-        $this->assertFalse($user->getNom() == 'BENAR');
-        $this->assertFalse($user->getPassword() == 'passwwword');
-        $this->assertFalse($user->getTelephone() == '+(33)0707070707');
+        $this->assertNotEquals($user->getEmail() == 'alain@test.com');
+        $this->assertNotEquals($user->getPrenom() == 'Alain');
+        $this->assertNotEquals($user->getNom() == 'BENAR');
+        $this->assertNotEquals($user->getPassword() == 'passwwword');
+        $this->assertNotEquals($user->getTelephone() == '+(33)0707070707');
     }
 }

@@ -246,11 +246,9 @@ class Suite
 
     public function removeGallery(Gallery $gallery): self
     {
-        if ($this->gallery->removeElement($gallery)) {
+        if ($this->gallery->removeElement($gallery) && $gallery->getSuite() === $this) {
             // set the owning side to null (unless already changed)
-            if ($gallery->getSuite() === $this) {
-                $gallery->setSuite(null);
-            }
+            $gallery->setSuite(null);
         }
 
         return $this;

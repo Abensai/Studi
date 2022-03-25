@@ -96,14 +96,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
-     * @deprecated since Symfony 5.3, use getUserIdentifier instead
-     */
-    public function getUsername(): string
-    {
-        return (string) $this->email;
-    }
-
-    /**
      * @see UserInterface
      */
     public function getRoles(): array
@@ -213,11 +205,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function removeBooking(Booking $booking): self
     {
-        if ($this->booking->removeElement($booking)) {
+        if ($this->booking->removeElement($booking) && $booking->getUser() === $this) {
             // set the owning side to null (unless already changed)
-            if ($booking->getUser() === $this) {
-                $booking->setUser(null);
-            }
+            $booking->setUser(null);
         }
 
         return $this;

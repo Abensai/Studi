@@ -162,11 +162,9 @@ class Establishment
 
     public function removeSuite(Suite $suite): self
     {
-        if ($this->suite->removeElement($suite)) {
+        if ($this->suite->removeElement($suite) && $suite->getEstablishment() === $this) {
             // set the owning side to null (unless already changed)
-            if ($suite->getEstablishment() === $this) {
-                $suite->setEstablishment(null);
-            }
+            $suite->setEstablishment(null);
         }
 
         return $this;
