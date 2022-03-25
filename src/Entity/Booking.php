@@ -38,7 +38,7 @@ class Booking
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity=suite::class, inversedBy="booking", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Suite::class, inversedBy="booking", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $suite;
