@@ -1,0 +1,27 @@
+@import "~bootstrap/scss/bootstrap";
+@import "scss/style";
+
+//HOME
+@import "scss/nav";
+@import "scss/welcome";
+@import "scss/about";
+@import "scss/service";
+@import "scss/grid";
+@import "scss/footer";
+
+//ESTABLISHMENT
+@import "scss/establishment";
+
+//SUITE
+@import "scss/suite";
+@import "scss/booking";
+
+//CONTACT
+@import "scss/contact";
+//LOGIN
+//ADMIN
+
+//FONT
+@import "@fortawesome/fontawesome-free/scss/fontawesome";
+@import "@fortawesome/fontawesome-free/scss/solid";
+@import "@fortawesome/fontawesome-free/scss/brands";

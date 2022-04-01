@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Spectral&display=swap');
+
+:root {
+  --primary: #e6c619;
+  --dark: #303030;
+  --body: #988e75;
+  --dark-light: #4c4c4c;
+  --cyan: #84deee;
+  --green: #81d742;
+  --purple: #ce78db;
+  --peach: #df8888;
+  --sand: #e3c56b;
+  --box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+  --font-body: Spectral, 'sans-serif' ;
+  --font-special: Kaushan Script, 'sans-serif' ;
+}
+
+body {
+  font-family: var(--font-body);
+  line-height: 1.7;
+  color: var(--body);
+}
+
+h1,h2,h3,h4,h5,
+.display-4 {
+  color: var(--dark);
+  font-weight: 700;
+  font-family: var(--font-special);
+}
+
+h6 {
+  color: var(--sand);
+  font-weight: 700;
+  font-family: var(--font-body);
+}
+
+a {
+  color: var(--dark);
+  text-decoration: none;
+  font-family: var(--font-body);
+  &:hover {
+    color: var(--primary);
+  }
+}

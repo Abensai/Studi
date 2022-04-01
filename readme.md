@@ -9,8 +9,8 @@ Application Symfony permettant de réserver des suites du groupe hôtelier Hypno
 * PHP 8.1
 * Composer
 * Symfony CLI
-* Docker
 * Docker-compose
+* nodejs et npm
 
 Les pré-requis peuvent être vérifié avec la commande suivante {de la CLI Symfony}: {sauf pour la cas de Docker et Docker-compose}
 ```bash
@@ -25,8 +25,11 @@ symfony check:requirements
 ## Lancer l'environnement de développement
 
 ```bash
-docker-compose up -d
+composer install
+npm install
+npm run build
 symfony serve:start -d
+
 ```
 ##Lancer tests en local
 ```bash
