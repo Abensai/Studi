@@ -11,12 +11,12 @@
   --peach: #df8888;
   --sand: #e3c56b;
   --box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
-  --font-body: Spectral;
-  --font-special: Kaushan Script;
+  --font-body: Spectral, 'sans-serif' ;
+  --font-special: Kaushan Script, 'sans-serif' ;
 }
 
 body {
-  font-family: var(--font-body), 'sans-serif' ;
+  font-family: var(--font-body);
   line-height: 1.7;
   color: var(--body);
 }
