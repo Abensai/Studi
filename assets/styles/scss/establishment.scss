@@ -1,0 +1,16 @@
+//ESTABLISHMENT
+.esta {
+  p {
+    color: var(--dark-light);
+  }
+}
+  .call-to-action-book {
+    font-family: var(--font-special);
+    text-decoration: underline;
+    font-weight: bold;
+    margin-left: 5px;
+    &:hover {
+      color: var(--sand);
+      cursor: pointer;
+    }
+  }

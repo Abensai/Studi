@@ -1,0 +1,38 @@
+.booking {
+  background-image: var(--dark-light);
+}
+.input-group{
+  margin-bottom: 1.5rem;
+}
+
+.input-label {
+  display: block;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;margin-bottom: 1rem;
+}
+
+.input,
+.options {
+  outline: none;
+  border: none;
+  width: 100%;
+  min-height: 4rem;
+  padding: 1rem;
+  font-weight: bold;
+  color: var(--sand);
+  letter-spacing: 2px;
+  font-family: var(--font-special);
+  resize: none;
+}
+
+.form-btn {
+  margin-top: 2.5rem;
+  cursor: pointer;
+  color: white;
+  background-color: var(--dark);
+  &:hover {
+    background-color: var(--sand);
+  }
+}

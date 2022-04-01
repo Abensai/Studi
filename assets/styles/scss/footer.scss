@@ -1,0 +1,18 @@
+//FOOTER
+.footer-top{
+  padding: 90px;
+  background-color: var(--dark);
+  a {
+    color: var(--body);
+    &:hover {
+      color: var(--primary);
+    }
+  }
+  .logo {
+    width: 160px;
+    color: white;
+  }
+}
+.footer-bottom {
+  background-color: var(--dark-light);
+}

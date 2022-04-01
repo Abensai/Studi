@@ -1,0 +1,11 @@
+.suite {
+  .col-img {
+    background-image: url("../../gallery/paris.png");
+    background-position: center;
+    background-size: cover;
+    min-height: 500px;
+  }
+  .iconbox {
+    flex: none;
+  }
+}

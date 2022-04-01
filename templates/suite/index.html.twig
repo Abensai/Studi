@@ -1,0 +1,131 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Suite{% endblock %}
+
+{% block body %}
+    <section id="suite" class="row w-100 py-0 suite bg-light">
+        <div class="col-lg-6 col-img">
+        </div>
+        <div class="col-lg-6 py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <h1>HOTEL PARIS</h1>
+                        <h6>ESTABLISHMENT</h6>
+                        <p>Details of establishment</p>
+                        <div class="suite-service d-flex mt-5">
+                            <div class="iconbox me-3">
+                                <em>
+                                    <i class="fa-solid fa-hotel"></i>
+                                </em>
+                            </div>
+                            <div>
+                                <h5>HOTELIER</h5>
+                                <p>Description service 1 escription</p>
+                            </div>
+                        </div>
+                        <div class="suite-service d-flex mt-5">
+                            <div class="iconbox me-3">
+                                <em>
+                                    <i class="fa-solid fa-spa"></i>
+                                </em>
+                            </div>
+                            <div>
+                                <h5>SPA</h5>
+                                <p>Description service 1 escription</p>
+                            </div>
+                        </div>
+                        <div class="suite-service d-flex mt-5">
+                            <div class="iconbox me-3">
+                                <em>
+                                    <i class="fa-solid fa-utensils"></i>
+                                </em>
+                            </div>
+                            <div>
+                                <h5>RESTAURANT</h5>
+                                <p>Description service 1 escription</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="suits" class="suit bg-light">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-8 mx-auto text-center">
+                    <h2>Our Suits</h2>
+                    <h6 class="label-section">SUITE</h6>
+                    <p>Description suite</p>
+                </div>
+            </div>
+            <div class="d-flex p-2 justify-content-around flex-wrap">
+                <div class="mr-auto mb-5">
+                    <div class="suite">
+                        <img src="{{ asset('build/images/hotel-royal.png') }}" alt="">
+                        <a class="mb-3" href="/suite"><h5 class="mt-4 mb-2">SUITE ROYAL</h5></a>
+                        <em><i class="fa-solid fa-light-switch-on text-success"></i>Available</em>
+                        <em><i class="fa-solid fa-light-switch-off text-danger"></i>Unavailable</em>
+                        <p>Description suite</p>
+                        <button type="button" class="call-to-action-book" id="call-to-action-book" data-toggle="modal" data-target="#bookingModal"> Booking</button>
+                    </div>
+                </div>
+                <div class="mr-auto mb-5">
+                    <div class="suite">
+                        <img src="{{ asset('build/images/hotel-royal.png') }}" alt="">
+                        <a class="mb-3" href="/suite"><h5 class="mt-4 mb-2">SUITE ROYAL</h5></a>
+                        <em><i class="fa-solid fa-light-switch-on text-success"></i>Available</em>
+                        <em><i class="fa-solid fa-light-switch-off text-danger"></i>Unavailable</em>
+                        <p>Description suite</p>
+                        <button type="button" class="call-to-action-book" id="call-to-action-book" data-toggle="modal" data-target="#bookingModal"> Booking</button>
+                    </div>
+                </div>
+                <div class="mr-auto mb-5">
+                    <div class="suite">
+                        <img src="{{ asset('build/images/hotel-royal.png') }}" alt="">
+                        <a class="mb-3" href="/suite"><h5 class="mt-4 mb-2">SUITE ROYAL</h5></a>
+                        <em><i class="fa-solid fa-light-switch-on text-success"></i>Available</em>
+                        <em><i class="fa-solid fa-light-switch-off text-danger"></i>Unavailable</em>
+                        <p>Description suite</p>
+                        <button type="button" class="call-to-action-book" id="call-to-action-book" data-toggle="modal" data-target="#bookingModal"> Booking</button>
+                    </div>
+                </div>
+                <div class="mr-auto mb-5">
+                    <div class="suite">
+                        <img src="{{ asset('build/images/hotel-royal.png') }}" alt="">
+                        <a class="mb-3" href="/suite"><h5 class="mt-4 mb-2">SUITE ROYAL</h5></a>
+                        <em><i class="fa-solid fa-light-switch-on text-success"></i>Available</em>
+                        <em><i class="fa-solid fa-light-switch-off text-danger"></i>Unavailable</em>
+                        <p>Description suite</p>
+                        <button type="button" class="call-to-action-book" id="call-to-action-book" data-toggle="modal" data-target="#bookingModal"> Booking</button>
+                    </div>
+                </div>
+                <div class="mr-auto mb-5">
+                    <div class="suite">
+                        <img src="{{ asset('build/images/hotel-royal.png') }}" alt="">
+                        <a class="mb-3" href="/suite"><h5 class="mt-4 mb-2">SUITE ROYAL</h5></a>
+                        <em><i class="fa-solid fa-light-switch-on text-success"></i>Available</em>
+                        <em><i class="fa-solid fa-light-switch-off text-danger"></i>Unavailable</em>
+                        <p>Description suite</p>
+                        <button type="button" class="call-to-action-book" id="call-to-action-book" data-toggle="modal" data-target="#bookingModal"> Booking</button>
+                    </div>
+                </div>
+                <div class="mr-auto mb-5">
+                    <div class="suite">
+                        <img src="{{ asset('build/images/hotel-royal.png') }}" alt="">
+                        <a class="mb-3" href="/suite"><h5 class="mt-4 mb-2">SUITE ROYAL</h5></a>
+                        <em><i class="fa-solid fa-light-switch-on text-success"></i>Available</em>
+                        <em><i class="fa-solid fa-light-switch-off text-danger"></i>Unavailable</em>
+                        <p>Description suite</p>
+                        <button type="button" class="call-to-action-book" id="call-to-action-book" data-toggle="modal" data-target="#bookingModal"> Booking</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% include 'suite/modalbooking.html.twig' %}
+{% endblock %}

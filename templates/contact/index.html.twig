@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+    <section class="contact">
+        <div class="container flex-wrap align-items-center">
+            <div class="contact-content mb-5">
+                <div class="mb-5 text-center">
+                    <h2>Get in touch with us</h2>
+                    <h6>Contact</h6>
+                </div>
+                <div class="wrap mb-5">
+                    <img src="{{ asset('build/images/beyond-the-blues.png') }}" alt="">
+                </div>
+                <form action="" class="form contact-form">
+                    <div class="input-group-wrap">
+                        <div class="input-group">
+                            <label for="name" class=input-label">Name</label>
+                            <input type="text" class="input" id="name" placeholder="name"/>
+                            <span class="bar"></span>
+                        </div>
+                        <div class="input-group">
+                            <label for="firstname" class=input-label">Suite</label>
+                            <input type="text" class="input" id="firstname" placeholder="firstname"/>
+                            <span class="bar"></span>
+                        </div>
+                        <div class="input-group">
+                            <label for="email" class=input-label">Email</label>
+                            <input type="email" class="input" id="email" placeholder="email">
+                            <span class="bar"></span>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="subject" class=input-label">Subject</label>
+                        <select class="custom-select" id="subject">
+                            <option selected>Choose Subject</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                            <option value="3">Three</option>
+                        </select>
+                        <span class="bar"></span>
+                    </div>
+                    <div class="input-group">
+                        <label for="message" class=input-label">Message</label>
+                        <textarea class="input" id="message" cols="30" rows="8" placeholder="Message" required></textarea>
+                        <span class="bar"></span>
+                    </div>
+                    <button type="button" class="btn form-btn" >Submit</button>
+                </form>
+            </div>
+            <div class="details-contact mb-5">
+                <h2>details</h2>
+                <h6>contact establishment</h6>
+                <p>name, address, phone, email</p>
+            </div>
+        </div>
+    </section>
+{% endblock %}
