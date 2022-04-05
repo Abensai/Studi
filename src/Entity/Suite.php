@@ -55,7 +55,7 @@ class Suite
     private $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Service::class, mappedBy="suite")
+     * @ORM\ManyToMany(targetEntity=Service::class, mappedBy="suite", cascade={"persist"})
      */
     private $services;
 
