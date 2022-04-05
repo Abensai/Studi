@@ -40,7 +40,7 @@ class Service
     private $slug;
 
     /**
-     * @ORM\ManyToMany(targetEntity=Suite::class, inversedBy="services")
+     * @ORM\ManyToMany(targetEntity=Suite::class, inversedBy="services", cascade={"persist"})
      */
     private $suite;
 
