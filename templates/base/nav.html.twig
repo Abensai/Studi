@@ -6,8 +6,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto">
-                <a href="/#home" class="nav-item nav-link active">Home</a>
-                <a href="/establishment" class="nav-item nav-link">Establishment</a>
+                <a href="{{ path('app_home') }}" class="nav-item nav-link active">Home</a>
+                <a href="{{ path('app_establishment') }}" class="nav-item nav-link">Establishment</a>
                 <div class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
                     <div class="dropdown-menu">
@@ -16,11 +16,11 @@
                         <a href="#" class="dropdown-item">Contact</a>
                     </div>
                 </div>
-                <a href="/#about" class="nav-item nav-link" tabindex="-1">About Us</a>
+                <a href="{{ path('app_home', {'_fragment': 'about'}) }}" class="nav-item nav-link" tabindex="-1">About Us</a>
             </div>
             <div class="navbar-nav ms-auto">
-                <a href="/contact" class="nav-item nav-link">Contact</a>
-                <a href="#" class="nav-item nav-link">Login</a>
+                <a href="{{ path('app_contact') }}" class="nav-item nav-link">Contact</a>
+                <a href="{{ path('app_login') }}" class="nav-item nav-link">Login</a>
             </div>
         </div>
     </div>

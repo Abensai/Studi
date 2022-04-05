@@ -6,7 +6,7 @@ section{
 
 .card-effect {
   box-shadow: var(--box-shadow);
-  background-color: white;
+  background-color: var(--white);
   background-image: url("../../gallery/vienna.png");
   background-position: center;
   background-size: cover;
@@ -25,7 +25,7 @@ section{
   align-items: center;
   justify-content: center;
   background-color: var(--primary);
-  color: white;
+  color: var(--white);
   font-size: 32px;
   border-radius: 100px;
 }
@@ -47,11 +47,11 @@ section{
     transition: all 0.4s ease;
   }
   h5, p {
-    color: white;
+    color: var(--white);
   }
   &:hover {
     .iconbox {
-      background-color: white ;
+      background-color: var(--white) ;
       color: var(--primary);
     }
     &:after {
