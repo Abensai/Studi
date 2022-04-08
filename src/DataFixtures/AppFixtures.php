@@ -22,6 +22,9 @@ class AppFixtures extends Fixture
         $this->passwordHashes = $passwordHashes;
     }
 
+    /**
+     * @throws \Exception
+     */
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
@@ -152,8 +155,7 @@ class AppFixtures extends Fixture
 
         for ($i = 0; $i < 18; ++$i) {
             for ($j = 0; $j < 4; ++$j) {
-                $randomKey = rand(0, 5);
-
+                $randomKey = random_int(0, 5);
                 $suite = $this->getReference("suite_$i");
                 $service = $this->getReference("service_$randomKey");
                 $service->addSuite($suite);
