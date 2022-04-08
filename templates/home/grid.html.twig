@@ -1,72 +1,17 @@
-<section class="grid-main">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3 box-1">
-                <div class="grid-box style_1">
-                    <div class="grid-content title_top">
-                        <a href="">
-                            <h3 class="grid-title">photo1</h3>
-                            <span class="overlay-bg bg-cyan"></span>
-                            <img src="{{ asset('build/images/share.png') }}" width="277"
-                                 height="600" alt="">
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-9">
-                <div class="row">
-                    <div class="col-sm-8 box-1">
-                        <div class="grid-box style_1">
-                            <div class="grid-content title_top">
-                                <a href="">
-                                    <h3 class="grid-title">photo2</h3>
-                                    <span class="overlay-bg bg-peach"></span>
-                                    <img src="{{ asset('build/images/activity.png') }}" width="570"
-                                         height="277" alt="">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 box-1">
-                        <div class="grid-box style_1">
-                            <div class="grid-content title_top">
-                                <a href="">
-                                    <h3 class="grid-title">photo3</h3>
-                                    <span class="overlay-bg bg-green"></span>
-                                    <img src="{{ asset('build/images/green.png') }}" width="277"
-                                         height="285" alt="">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-4 box-1">
-                        <div class="grid-box style_1">
-                            <div class="grid-content title_top">
-                                <a href="">
-                                    <h3 class="grid-title">photo4</h3>
-                                    <span class="overlay-bg bg-purple"></span>
-                                    <img src="{{ asset('build/images/dubai.png') }}" width="277"
-                                         height="285" alt="">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-8 box-1">
-                        <div class="grid-box style_1">
-                            <div class="grid-content title_top">
-                                <a href="">
-                                    <h3 class="grid-title">photo5</h3>
-                                    <span class="overlay-bg bg-sand"></span>
-                                    <img src="{{ asset('build/images/blue-mosque-hotel.png') }}" width="570"
-                                         height="277" alt="">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+<section class="image-gallery">
+    {% for gallery in galleries %}
+    <div class="image-box">
+        <img src="{{ gallery.lien }}" alt="{{ gallery.titre }}" />
+        <div class="overlay">
+            <div class="details">
+                <h3 class="title">
+                    <a href="#"></a>
+                </h3>
+                <span class="category">
+              <a href="#">Suite </a>
+            </span>
             </div>
         </div>
     </div>
+   {% endfor %}
 </section>

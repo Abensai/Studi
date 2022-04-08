@@ -44,6 +44,11 @@ class Service
      */
     private $suite;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $icon;
+
     public function __construct()
     {
         $this->suite = new ArrayCollection();
@@ -122,6 +127,18 @@ class Service
     public function removeSuite(Suite $suite): self
     {
         $this->suite->removeElement($suite);
+
+        return $this;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(string $icon): self
+    {
+        $this->icon = $icon;
 
         return $this;
     }

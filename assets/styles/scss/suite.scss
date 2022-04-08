@@ -1,11 +1,37 @@
 .suite {
   .col-img {
-    background-image: url("../../gallery/paris.png");
-    background-position: center;
-    background-size: cover;
-    min-height: 500px;
+    width: 100%;
+    width: -moz-available;
+    //noinspection CssInvalidPropertyValue
+    width: -webkit-fill-available;
+    //noinspection CssInvalidPropertyValue
+    width: fill-available;
   }
-  .iconbox {
-    flex: none;
+  .display-view {
+    @media(min-width: 991px){
+      display: flex;
+      .suite-service {
+        h5,.display-p {
+          display: none;
+        }
+      }
+    }
+    @media(max-width: 991px){
+      .suite-service {
+          display: flex;
+      }
+    }
+  }
+  .card {
+    border-color: var(--body);
+  }
+  .btn-booking {
+    background-color: var(--sand);
+    color: var(--dark);
+    margin: 1em;
+    &:hover {
+      background-color: var(--dark);
+      color: var(--white);
+    }
   }
 }

@@ -3,7 +3,10 @@
   p {
     color: var(--dark-light);
   }
-}
+  img {
+    width: 50%;
+    height: 50%;
+  }
   .call-to-action-book {
     font-family: var(--font-special);
     text-decoration: underline;
@@ -14,3 +17,4 @@
       cursor: pointer;
     }
   }
+}

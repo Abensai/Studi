@@ -22,10 +22,6 @@ class AppFixtures extends Fixture
         $this->passwordHashes = $passwordHashes;
     }
 
-    /**
-     * @param ObjectManager $manager
-     * @return void
-     */
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
@@ -50,9 +46,34 @@ class AppFixtures extends Fixture
             'manager-two@manager.com',
             'manager-three@manager.com', ];
         $hotels = [
-            'Continental Hotel and Casino',
-            'Plaza Hotel',
-            'Ritz-Carlton Hotel',
+            '0' => [
+                'name' => 'Continental Hotel and Casino',
+                'image' => '/build/images/tholaal-mohamed.jpg',
+            ],
+            '1' => [
+                'name' => 'Plaza Hotel',
+                'image' => '/build/images/valeriia-bugaiova.jpg',
+            ],
+            '2' => [
+                'name' => 'Ritz-Carlton Hotel',
+                'image' => '/build/images/fernando-alvarez-rodriguez.jpg',
+            ],
+        ];
+        $nameService = [
+            'Champagne',
+            'Parking',
+            'Sport',
+            'Flowers',
+            'Restaurant',
+            'Spa / Hammam / Massage',
+        ];
+        $iconService = [
+            'fa-solid fa-champagne-glasses',
+            'fa-solid fa-square-parking',
+            'fa-solid fa-dumbbell',
+            'fa-solid fa-leaf',
+            'fa-solid fa-utensils',
+            'fa-solid fa-spa',
         ];
         $counter = 0;
 
@@ -70,13 +91,14 @@ class AppFixtures extends Fixture
             if (str_contains($email, 'manager')) {
                 $establishment = new Establishment();
 
-                $establishment->setNom($hotels[$counter])
+                $establishment->setNom($hotels[$counter]['name'])
                     ->setAdresse($faker->address())
                     ->setVille($faker->city())
                     ->setDescription($faker->text(350))
                     ->setPageWeb($faker->url())
                     ->setUser($user)
-                    ->setSlug($faker->slug(3));
+                    ->setSlug($faker->slug(3))
+                    ->setImage($hotels[$counter]['image']);
                 $manager->persist($establishment);
 
                 $user->setEstablishment($establishment);
@@ -92,7 +114,7 @@ class AppFixtures extends Fixture
         // Suite Fixtures
         $key = 0;
         for ($i = 0; $i < 3; ++$i) {
-            for ($j = 0; $j < 6; ++$j) {
+            for ($j = 1; $j < 7; ++$j) {
                 $suite = new Suite();
 
                 $suite->setTitre($faker->words(3, true))
@@ -102,7 +124,7 @@ class AppFixtures extends Fixture
                     ->setDisponibilite(true)
                     ->setLienBooking($faker->url())
                     ->setPrix($faker->randomFloat(2, 500, 9999))
-                    ->setImage('gallery/lux-'.strval($j).'jpg');
+                    ->setImage('/build/images/lux-'.strval($j).'.jpg');
 
                 $this->addReference('suite_'.$key, $suite);
 
@@ -112,20 +134,32 @@ class AppFixtures extends Fixture
         }
 
         // Service Fixtures
+        $key = 0;
+        for ($j = 0; $j < 6; ++$j) {
+            $service = new Service();
+
+            $service->setTitre($nameService[$j])
+                ->setDescription($faker->text(200))
+                ->setPrix($faker->randomFloat(2, 10, 999))
+                ->setSlug($faker->slug(3))
+                ->setIcon($iconService[$j]);
+
+            $this->addReference('service_'.$key, $service);
+
+            $manager->persist($service);
+            ++$key;
+        }
+
         for ($i = 0; $i < 18; ++$i) {
             for ($j = 0; $j < 4; ++$j) {
-                $service = new Service();
+                $randomKey = rand(0, 5);
 
                 $suite = $this->getReference("suite_$i");
-
-                $service->setTitre($faker->words(3, true))
-                    ->setDescription($faker->text(200))
-                    ->setPrix($faker->randomFloat(2, 10, 999))
-                    ->setSlug($faker->slug(3))
-                    ->addSuite($suite);
-
+                $service = $this->getReference("service_$randomKey");
+                $service->addSuite($suite);
                 $suite->addService($service);
 
+                $manager->persist($service);
                 $manager->persist($service);
             }
         }
@@ -154,10 +188,6 @@ class AppFixtures extends Fixture
         $manager->flush();
     }
 
-    /**
-     * @param User $user
-     * @return string
-     */
     private function hashPassword(User $user): string
     {
         return $this->passwordHashes->hashPassword(
@@ -166,8 +196,6 @@ class AppFixtures extends Fixture
     }
 
     /**
-     * @param string $url
-     *
      * @return mixed|string
      */
     private function getImageName(string $url)

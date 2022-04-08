@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Gallery;
+use App\Entity\Suite;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
@@ -43,6 +44,29 @@ class GalleryRepository extends ServiceEntityRepository
         if ($flush) {
             $this->_em->flush();
         }
+    }
+
+    /**
+     * @return Gallery[]
+     */
+    public function lastFive(): array
+    {
+        return $this->createQueryBuilder('g')
+            ->orderBy('g.id', 'DESC')
+            ->setMaxResults(9)
+            ->getQuery()
+            ->getResult();
+    }
+
+    public function getLabelSuite(Suite $suite)
+    {
+        return $this->createQueryBuilder()
+            ->Select('g', 's')
+            ->from(Suite::class, 'g')
+            ->leftJoin('g.suite_id', 's')
+            ->where('g.suite_id = s.id')
+            ->getQuery()
+            ->getResult();
     }
 
     // /**

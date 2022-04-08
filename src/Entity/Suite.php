@@ -60,12 +60,6 @@ class Suite
     private $services;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Establishment::class, inversedBy="suite")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $establishment;
-
-    /**
      * @ORM\OneToOne(targetEntity=Booking::class, mappedBy="suite", cascade={"persist", "remove"})
      */
     private $booking;
@@ -74,6 +68,12 @@ class Suite
      * @ORM\OneToMany(targetEntity=Gallery::class, mappedBy="suite", orphanRemoval=true)
      */
     private $gallery;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Establishment::class, inversedBy="suites")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $establishment;
 
     public function __construct()
     {
@@ -197,18 +197,6 @@ class Suite
         return $this;
     }
 
-    public function getEstablishment(): ?Establishment
-    {
-        return $this->establishment;
-    }
-
-    public function setEstablishment(?Establishment $establishment): self
-    {
-        $this->establishment = $establishment;
-
-        return $this;
-    }
-
     public function getBooking(): ?Booking
     {
         return $this->booking;
@@ -250,6 +238,18 @@ class Suite
             // set the owning side to null (unless already changed)
             $gallery->setSuite(null);
         }
+
+        return $this;
+    }
+
+    public function getEstablishment(): ?Establishment
+    {
+        return $this->establishment;
+    }
+
+    public function setEstablishment(?Establishment $establishment): self
+    {
+        $this->establishment = $establishment;
 
         return $this;
     }

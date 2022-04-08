@@ -7,60 +7,35 @@
         <div class="container">
             <div class="row mb-5">
                 <div class="col-md-8 mx-auto text-center">
-                    <h2>Our Establishment</h2>
+                    <h2>Our Establishments</h2>
                     <h6 class="label-section">ESTABLISHMENT</h6>
-                    <p>Description establishment</p>
+                    <p>Labore id occaecati temporibus quos. Sint necessitatibus esse sed dolorem labore.
+                        Neque ab et aspernatur rerum voluptatum. Voluptatem eos dignissimos error adipisci
+                        eligendi quo cupiditate. Sit quam placeat culpa nam qui blanditiis.
+                    </p>
                 </div>
             </div>
             <div class="d-flex p-2 justify-content-around flex-wrap">
-                <div class="mr-auto mb-5">
+                {% for establishment in establishments %}
+                    <div class="mr-auto mb-5">
                     <div class="establishment">
-                        <img src="{{ asset('build/images/paris.png') }}" alt="">
-                        <a class="mb-3" href="/suite"><h5 class="mt-4 mb-2">PARIS</h5></a>
-                        <p>Description establishment parisian</p>
-                        <em class="fa-solid fa-bell-concierge"></em><a href="/suite" class="call-to-action-book"> Booking</a>
+                        <img src="{{ establishment.image }}" alt="">
+                        <a class="mb-3" href="{{ path('app_establishment_suite', {'id': establishment.id}) }}"><h5 class="mt-4 mb-2">{{ establishment.nom }}</h5></a>
+                        <div class="mt-2">
+                            <div class="mt-2 mb-2">
+                                <p>{{ establishment.description }}</p>
+                            </div>
+                            <ul class="mt-2 mb-5">
+                                <li>{{ establishment.adresse }}</li>
+                                <li>{{ establishment.ville }}</li>
+                                <li><a href="{{ establishment.getPageWeb() }}" target="_blank">{{ establishment.getPageWeb() }}</a></li>
+                            </ul>
+                        </div>
+                        <em class="fa-solid fa-bell-concierge"></em>
+                        <a href="{{ path('app_establishment_suite', {'id': establishment.id}) }}" class="call-to-action-book"> Booking</a>
                     </div>
                 </div>
-                <div class="mr-auto mb-5">
-                    <div class="establishment">
-                        <img src="{{ asset('build/images/paris.png') }}" alt="">
-                        <a class="mb-3" href="/suite"><h5 class="mt-4 mb-2">PARIS</h5></a>
-                        <p>Description establishment parisian</p>
-                        <em class="fa-solid fa-bell-concierge"></em><a href="/suite" class="call-to-action-book"> Booking</a>
-                    </div>
-                </div>
-                <div class="mr-auto mb-5">
-                    <div class="establishment">
-                        <img src="{{ asset('build/images/paris.png') }}" alt="">
-                        <a class="mb-3" href="/suite"><h5 class="mt-4 mb-2">PARIS</h5></a>
-                        <p>Description establishment parisian</p>
-                        <em class="fa-solid fa-bell-concierge"></em><a href="/suite" class="call-to-action-book"> Booking</a>
-                    </div>
-                </div>
-                <div class="mr-auto mb-5">
-                    <div class="establishment">
-                        <img src="{{ asset('build/images/paris.png') }}" alt="">
-                        <a class="mb-3" href="/suite"><h5 class="mt-4 mb-2">PARIS</h5></a>
-                        <p>Description establishment parisian</p>
-                        <em class="fa-solid fa-bell-concierge"></em><a href="/suite" class="call-to-action-book"> Booking</a>
-                    </div>
-                </div>
-                <div class="mr-auto mb-5">
-                    <div class="establishment">
-                        <img src="{{ asset('build/images/paris.png') }}" alt="">
-                        <a class="mb-3" href="/suite"><h5 class="mt-4 mb-2">PARIS</h5></a>
-                        <p>Description establishment parisian</p>
-                        <em class="fa-solid fa-bell-concierge"></em><a href="/suite" class="call-to-action-book"> Booking</a>
-                    </div>
-                </div>
-                <div class="mr-auto mb-5">
-                    <div class="establishment">
-                        <img src="{{ asset('build/images/paris.png') }}" alt="">
-                        <a class="mb-3" href="/suite"><h5 class="mt-4 mb-2">PARIS</h5></a>
-                        <p>Description establishment parisian</p>
-                        <em class="fa-solid fa-bell-concierge"></em><a href="/suite" class="call-to-action-book"> Booking</a>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>

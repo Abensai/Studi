@@ -4,47 +4,30 @@
 
 {% block body %}
     <section id="suite" class="row w-100 py-0 suite bg-light">
-        <div class="col-lg-6 col-img">
+        <div class="col-lg-6">
+            <img class="col-img" src="{{ establishment.image }}" alt="{{ establishment.nom }}">
         </div>
         <div class="col-lg-6 py-5">
             <div class="container">
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
-                        <h1>HOTEL PARIS</h1>
+                        <h1>{{ establishment.nom }}</h1>
                         <h6>ESTABLISHMENT</h6>
-                        <p>Details of establishment</p>
-                        <div class="suite-service d-flex mt-5">
-                            <div class="iconbox me-3">
-                                <em>
-                                    <em class="fa-solid fa-hotel"></em>
-                                </em>
-                            </div>
-                            <div>
-                                <h5>HOTELIER</h5>
-                                <p>Description service 1 escription</p>
-                            </div>
-                        </div>
-                        <div class="suite-service d-flex mt-5">
-                            <div class="iconbox me-3">
-                                <em>
-                                    <em class="fa-solid fa-spa"></em>
-                                </em>
-                            </div>
-                            <div>
-                                <h5>SPA</h5>
-                                <p>Description service 1 escription</p>
-                            </div>
-                        </div>
-                        <div class="suite-service d-flex mt-5">
-                            <div class="iconbox me-3">
-                                <em>
-                                    <em class="fa-solid fa-utensils"></em>
-                                </em>
-                            </div>
-                            <div>
-                                <h5>RESTAURANT</h5>
-                                <p>Description service 1 escription</p>
-                            </div>
+                        <p>{{ establishment.description }}</p>
+                        <div class="display-view">
+                            {% for service in services %}
+                                <div class="suite-service mt-3">
+                                    <div class="iconbox me-3">
+                                        <em>
+                                            <em class="fa-solid fa-leaf{{ service.icon }}"></em>
+                                        </em>
+                                    </div>
+                                    <div>
+                                        <h5>{{ service.titre }}</h5>
+                                        <p class="display-p">{{ service.description|u.truncate(200, '...', false)  }}</p>
+                                    </div>
+                                </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
@@ -53,76 +36,42 @@
     </section>
 
 
-    <section id="suits" class="suit bg-light">
+    <section id="suits" class="suite bg-light">
         <div class="container">
             <div class="row mb-5">
                 <div class="col-md-8 mx-auto text-center">
-                    <h2>Our Suits</h2>
+                    <h2>Our Suites</h2>
                     <h6 class="label-section">SUITE</h6>
-                    <p>Description suite</p>
+                    <p>Expedita qui voluptatem omnis id iure. Eos eligendi non repellat
+                        qui velit impedit alias. Ea hic autem dolores dolores. Omnis fugit et
+                        laudantium ut ex. Nisi omnis nesciunt quae porro. Ut et similique iste
+                        expedita in.
+                    </p>
                 </div>
             </div>
             <div class="d-flex p-2 justify-content-around flex-wrap">
-                <div class="mr-auto mb-5">
-                    <div class="suite">
-                        <img src="{{ asset('build/images/hotel-royal.png') }}" alt="">
-                        <a class="mb-3" href="/suite"><h5 class="mt-4 mb-2">SUITE ROYAL</h5></a>
-                        <em class="fa-solid fa-light-switch-on text-success"></em>Available
-                        <em class="fa-solid fa-light-switch-off text-danger"></em>Unavailable
-                        <p>Description suite</p>
-                        <button type="button" class="call-to-action-book" id="call-to-action-book" data-toggle="modal" data-target="#bookingModal"> Booking</button>
+                {% for suite in suites %}
+                <div class="card mt-2 mb-2" style="width: 30rem;">
+                    <img src="{{ suite.image }}" class="card-img-top" alt="{{ suite.titre }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ suite.titre }}</h5>
+                        {% if suite.disponibilite == 1 %}
+                            <em class="fa-solid fa-building-circle-check text-success"></em>
+                            <span class="text-success"> Available</span>
+                        {% else %}
+                            <em class="fa-solid fa-building-circle-xmark text-danger"></em>
+                            <span class="text-danger"> Unavailable</span>
+                        {% endif %}
+                        <p class="card-text">{{ suite.description }}</p>
                     </div>
+                    <button type="button"
+                            class="btn btn-booking"
+                            data-bs-toggle="modal"
+                            data-bs-target="#bookingModal">
+                        Booking
+                    </button>
                 </div>
-                <div class="mr-auto mb-5">
-                    <div class="suite">
-                        <img src="{{ asset('build/images/hotel-royal.png') }}" alt="">
-                        <a class="mb-3" href="/suite"><h5 class="mt-4 mb-2">SUITE ROYAL</h5></a>
-                        <em class="fa-solid fa-light-switch-on text-success"></em>Available
-                        <em class="fa-solid fa-light-switch-off text-danger"></em>Unavailable
-                        <p>Description suite</p>
-                        <button type="button" class="call-to-action-book" id="call-to-action-book" data-toggle="modal" data-target="#bookingModal"> Booking</button>
-                    </div>
-                </div>
-                <div class="mr-auto mb-5">
-                    <div class="suite">
-                        <img src="{{ asset('build/images/hotel-royal.png') }}" alt="">
-                        <a class="mb-3" href="/suite"><h5 class="mt-4 mb-2">SUITE ROYAL</h5></a>
-                        <em class="fa-solid fa-light-switch-on text-success"></em>Available
-                        <em class="fa-solid fa-light-switch-off text-danger"></em>Unavailable
-                        <p>Description suite</p>
-                        <button type="button" class="call-to-action-book" id="call-to-action-book" data-toggle="modal" data-target="#bookingModal"> Booking</button>
-                    </div>
-                </div>
-                <div class="mr-auto mb-5">
-                    <div class="suite">
-                        <img src="{{ asset('build/images/hotel-royal.png') }}" alt="">
-                        <a class="mb-3" href="/suite"><h5 class="mt-4 mb-2">SUITE ROYAL</h5></a>
-                        <em class="fa-solid fa-light-switch-on text-success"></em>Available
-                        <em class="fa-solid fa-light-switch-off text-danger"></em>em>Unavailable
-                        <p>Description suite</p>
-                        <button type="button" class="call-to-action-book" id="call-to-action-book" data-toggle="modal" data-target="#bookingModal"> Booking</button>
-                    </div>
-                </div>
-                <div class="mr-auto mb-5">
-                    <div class="suite">
-                        <img src="{{ asset('build/images/hotel-royal.png') }}" alt="">
-                        <a class="mb-3" href="/suite"><h5 class="mt-4 mb-2">SUITE ROYAL</h5></a>
-                        <em class="fa-solid fa-light-switch-on text-success"></em>Available
-                        <em class="fa-solid fa-light-switch-off text-danger"></em>Unavailable
-                        <p>Description suite</p>
-                        <button type="button" class="call-to-action-book" id="call-to-action-book" data-toggle="modal" data-target="#bookingModal"> Booking</button>
-                    </div>
-                </div>
-                <div class="mr-auto mb-5">
-                    <div class="suite">
-                        <img src="{{ asset('build/images/hotel-royal.png') }}" alt="">
-                        <a class="mb-3" href="/suite"><h5 class="mt-4 mb-2">SUITE ROYAL</h5></a>
-                        <em class="fa-solid fa-light-switch-on text-success"></em>Available
-                        <em class="fa-solid fa-light-switch-off text-danger"></em>Unavailable
-                        <p>Description suite</p>
-                        <button type="button" class="call-to-action-book" id="call-to-action-book" data-toggle="modal" data-target="#bookingModal"> Booking</button>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
