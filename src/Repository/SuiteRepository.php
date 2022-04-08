@@ -2,11 +2,14 @@
 
 namespace App\Repository;
 
+use App\Entity\Establishment;
+use App\Entity\Service;
 use App\Entity\Suite;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @method Suite|null find($id, $lockMode = null, $lockVersion = null)
@@ -43,6 +46,19 @@ class SuiteRepository extends ServiceEntityRepository
         if ($flush) {
             $this->_em->flush();
         }
+    }
+
+
+    /**
+     * @return Suite[]
+     */
+    public function findEstablishment($establishment): array
+    {
+        return $this->createQueryBuilder('s')
+            ->where('s.establishment IN (:establishment)')
+            ->setParameter('establishment', $establishment)
+            ->getQuery()
+            ->getResult();
     }
 
     // /**

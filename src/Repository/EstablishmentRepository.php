@@ -45,6 +45,18 @@ class EstablishmentRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @return Establishment[]
+     */
+    public function firstSix(): array
+    {
+        return $this->createQueryBuilder('e')
+           ->orderBy('e.id', 'DESC')
+           ->setMaxResults(6)
+           ->getQuery()
+           ->getResult();
+    }
+
     // /**
     //  * @return Establishment[] Returns an array of Establishment objects
     //  */

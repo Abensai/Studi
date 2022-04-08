@@ -49,10 +49,6 @@ class Establishment
      */
     private $slug;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Suite::class, mappedBy="establishment", orphanRemoval=true)
-     */
-    private $suite;
 
     /**
      * @ORM\OneToOne(targetEntity=User::class, inversedBy="establishment", cascade={"persist", "remove"})
@@ -60,9 +56,19 @@ class Establishment
      */
     private $user;
 
+    /**
+     * @ORM\Column(type="string", length=100)
+     */
+    private $image;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Suite::class, mappedBy="establishment", orphanRemoval=true)
+     */
+    private $suites;
+
     public function __construct()
     {
-        $this->suite = new ArrayCollection();
+        $this->suites = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -150,25 +156,6 @@ class Establishment
         return $this->suite;
     }
 
-    public function addSuite(Suite $suite): self
-    {
-        if (!$this->suite->contains($suite)) {
-            $this->suite[] = $suite;
-            $suite->setEstablishment($this);
-        }
-
-        return $this;
-    }
-
-    public function removeSuite(Suite $suite): self
-    {
-        if ($this->suite->removeElement($suite) && $suite->getEstablishment() === $this) {
-            // set the owning side to null (unless already changed)
-            $suite->setEstablishment(null);
-        }
-
-        return $this;
-    }
 
     public function getUser(): ?User
     {
@@ -178,6 +165,48 @@ class Establishment
     public function setUser(User $user): self
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Suite>
+     */
+    public function getSuites(): Collection
+    {
+        return $this->suites;
+    }
+
+    public function addSuite(Suite $suite): self
+    {
+        if (!$this->suites->contains($suite)) {
+            $this->suites[] = $suite;
+            $suite->setEstablishment($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSuite(Suite $suite): self
+    {
+        if ($this->suites->removeElement($suite)) {
+            // set the owning side to null (unless already changed)
+            if ($suite->getEstablishment() === $this) {
+                $suite->setEstablishment(null);
+            }
+        }
 
         return $this;
     }
