@@ -31,7 +31,13 @@ npm run build
 symfony serve:start -d
 
 ```
-##Lancer tests en local
+
+## Ajouter des données de tests
+```bash
+symfony console doctrine:fixtures:load
+```
+
+## Lancer tests en local
 ```bash
 php bin/phpunit --testdox
 ```
@@ -49,6 +55,15 @@ php bin/phpunit --testdox
 
 # Back-Office
 
+```
+## Amélioration
+
+### Envoie des mails de Contacts
+
+Les mails de prise de contact sont stockés en base de données, pour les envoyer à l'admin par mail 
+dans un second temps, il faudrait mettre en place un cron sur :
+```bash
+symfony console app:send-contact
 ```
 
 ## Amélioration
