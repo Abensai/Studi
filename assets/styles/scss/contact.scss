@@ -1,62 +1,21 @@
-.contact {
-  .container {
-    display: flex;
-    justify-content: center;
-  }
-
-  .wrap {
-    @media (max-width: 767px) {
-      display: none;
-    }
-  }
-
-  .contact-form {
-    width: 100%;
-    background-color: var(--primary);
-    padding: 2.5rem;
-    .input {
-      display: block;
-      background-color: transparent;
-      color: var(--white);
-      font-weight: normal;
-      border-bottom: 2px solid white;
-      padding-left: 0;
-    }
-    .select {
-      width: 100%;
-      background: transparent;
-      font-family: var(--font-special);
-      color: var(--dark-light);
-    }
-  }
-
-  .bar {
-    display: block;
-    position: relative;
-    &::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 3px;
-      background-color: purple;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform .5s;
-    }
-  }
-
-  label {
-    display: none;
-  }
-  .details-contact {
-    @media (min-width: 980px) {
-      margin-left: 20%;
-    }
-  }
+.bg-cover {
+  background-image: url("../../gallery/tholaal-mohamed.jpg");
+}
+.img-cover {
+  width: -moz-available;
+  //noinspection CssInvalidPropertyValue
+  width: -webkit-fill-available;
+  //noinspection CssInvalidPropertyValue
+  width: fill-available;
 }
 
-.contact-form .input:focus + .bar::after {
-  transform: scaleX(1);
+#contact_envoyer {
+  background-color: var(--sand);
+  color: var(--dark);
+  border: var(--dark);
+  width: 100%;
+  &:hover {
+    background-color: var(--dark);
+    color: var(--white);
+  }
 }
