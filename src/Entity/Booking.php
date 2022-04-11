@@ -28,11 +28,6 @@ class Booking
     private $date_fin;
 
     /**
-     * @ORM\Column(type="string", length=100)
-     */
-    private $slug;
-
-    /**
      * @ORM\ManyToOne(targetEntity=User::class, inversedBy="booking")
      */
     private $user;
@@ -42,6 +37,12 @@ class Booking
      * @ORM\JoinColumn(nullable=false)
      */
     private $suite;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Establishment::class, inversedBy="booking", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $establishment;
 
     /**
      * @ORM\Column(type="decimal", precision=7, scale=2)
@@ -78,18 +79,6 @@ class Booking
         return $this;
     }
 
-    public function getSlug(): ?string
-    {
-        return $this->slug;
-    }
-
-    public function setSlug(string $slug): self
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
     public function getUser(): ?User
     {
         return $this->user;
@@ -102,12 +91,24 @@ class Booking
         return $this;
     }
 
+    public function getEstablishment(): ?establishment
+    {
+        return $this->establishment;
+    }
+
+    public function setEstablishment(?establishment $establishment): self
+    {
+        $this->establishment = $establishment;
+
+        return $this;
+    }
+
     public function getSuite(): ?suite
     {
         return $this->suite;
     }
 
-    public function setSuite(suite $suite): self
+    public function setSuite(?suite $suite): self
     {
         $this->suite = $suite;
 

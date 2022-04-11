@@ -253,4 +253,12 @@ class Suite
 
         return $this;
     }
+
+    public function availabilitySuite(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'availability' => $this->getDisponibilite(),
+        ];
+    }
 }
