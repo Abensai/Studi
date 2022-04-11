@@ -1,40 +1,131 @@
-<div class="modal fade" id="bookingModal" tabindex="-1" role="document" aria-labelledby="bookingModal" aria-hidden="true">
+{% form_theme form_booking 'bootstrap_5_layout.html.twig' %}
+<div class="modal" id="bookingModal" tabindex="-1" role="document" aria-labelledby="bookingModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Booking </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
             </div>
             <div class="modal-body">
                 <section class="booking">
                     <div class="container">
-                        <form action="" class="form">
-                            <div class="input-group">
-                                <label for="establishment" class=input-label">Establishment</label>
-                                <input type="text" class="input" id="establishment" placeholder="HOTEL PARIS" disabled/>
+
+                        {{ form_start(form_booking) }}
+
+                        {% for message in app.flashes('success') %}
+                            <div class="alert alert-success">
+                                {{ message }}
                             </div>
-                            <div class="input-group">
-                                <label for="suite" class=input-label">Suite</label>
-                                <input type="text" class="input" id="suite" placeholder="SUITE ROYAL" disabled/>
-                            </div>
-                            <div class="input-group">
-                                <label for="date-on" class=input-label">Date In</label>
-                                <input type="date" class="input" id="date-on">
-                            </div>
-                            <div class="input-group">
-                                <label for="date-out" class=input-label">Date Out</label>
-                                <input type="date" class="input" id="date-out">
-                            </div>
-                        </form>
+                        {% endfor %}
+
+                        <div class="my-custom-class-for-errors">
+                            {{ form_errors(form_booking) }}
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label class="form-label" for="bookingEstablishment">
+                                {{ form_label(form_booking.establishment) }}
+                            </label>
+                            {{ form_widget(form_booking.establishment) }}
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label class="form-label" for="bookingSuite">
+                                {{ form_label(form_booking.suite) }}
+                            </label>
+                            {{ form_widget(form_booking.suite) }}
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label class="form-label" for="bookingDateStart">
+                                {{ form_label(form_booking.date_debut) }}
+                            </label>
+                            {{ form_widget(form_booking.date_debut) }}
+                        </div>
+
+                        <div class="form-group mb-2">
+                            <label class="form-label" for="bookingDateEnd">
+                                {{ form_label(form_booking.date_fin) }}
+                            </label>
+                            {{ form_widget(form_booking.date_fin) }}
+                        </div>
                     </div>
+                    <div class="response-availability text-center mt-5"></div>
                 </section>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn form-btn"><em class="dots"> Check</em></button>
+                <button type="button" class="btn btn-secondary js-suites-close" data-bs-dismiss="modal">Cancel</button>
+                <div class="form-group mb-0">
+                    {{ form_widget(form_booking.check_availability, {'attr': {'class': 'js-suites'}}) }}
+                </div>
             </div>
+            {{ form_end(form_booking) }}
         </div>
     </div>
 </div>
+{% block javascripts %}
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script>
+        //disable select suite and establishment
+        const selectEstablishment = document.getElementById('booking_establishment');
+        const selectSuite = document.getElementById('booking_suite');
+
+        selectEstablishment.setAttribute('disabled', '');
+        selectSuite.setAttribute('disabled', '');
+
+        // pre fill select suite
+        if (document.body.addEventListener){
+            document.body.addEventListener('click',yourHandler,false);
+        }
+
+        function yourHandler(e){
+            e = e || window.event;
+            var target = e.target || e.srcElement;
+            if (target.className.match('.btn-booking'))
+            {
+                const $select = document.querySelector('#booking_suite');
+                $select.value =  e.target.dataset.id;
+            }
+        }
+    </script>
+    <script>
+        // check availability suite
+        window.addEventListener("load", function(event) {
+            document.querySelector("button.js-suites").addEventListener("click", getAvailabilitySuite);
+            document.querySelector("button.js-suites-close").addEventListener("click", quitBooking);
+        });
+
+        function getAvailabilitySuite (event) {
+            event.preventDefault();
+            let url = "/suite";
+
+            axios.get(url).then(response => {
+                const check = document.querySelector("div.response-availability");
+                const id = document.querySelector("#booking_suite").value
+
+                response.data.forEach(suite => {
+                    if(suite.id == id){
+                        const node = document.createElement("span");
+                        if (suite.availability === true) {
+                            node.classList.add("text-success");
+                            node.classList.add("ajax");
+                            node.textContent = "This Suite is available";
+                            check.appendChild(node);
+                        } else {
+                            node.classList.add("text-danger");
+                            node.classList.add("ajax");
+                            node.textContent = 'This Suite is unavailable. check other suite';
+                        }
+                        check.appendChild(node);
+                    }
+                });
+            });
+        }
+
+        function quitBooking (event) {
+            if(document.querySelector("span.ajax")) {
+                const check = document.querySelector("div.response-availability");
+                check.removeChild(check.firstElementChild);
+            }
+        }
+    </script>
+{% endblock %}

@@ -4,7 +4,7 @@ namespace App\Command;
 
 use App\Repository\ContactRepository;
 use App\Repository\UserRepository;
-use App\Service\ContactService;
+use App\Service\BookingService;
 use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -18,15 +18,15 @@ class SendContactCommand extends Command
 {
     private ContactRepository $contactRepository;
     private MailerInterface $mailer;
-    private ContactService $contactService;
+    private BookingService $contactService;
     private UserRepository $userRepository;
     protected static $defaultName = 'app:send-contact';
 
     public function __construct(
         ContactRepository $contactRepository,
-        MailerInterface $mailer,
-        ContactService $contactService,
-        UserRepository $userRepository
+        MailerInterface   $mailer,
+        BookingService    $contactService,
+        UserRepository    $userRepository
     ) {
         $this->contactRepository = $contactRepository;
         $this->mailer = $mailer;

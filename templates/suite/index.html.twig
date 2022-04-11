@@ -66,8 +66,10 @@
                     </div>
                     <button type="button"
                             class="btn btn-booking"
+                            data-id="{{ suite.id }}"
                             data-bs-toggle="modal"
-                            data-bs-target="#bookingModal">
+                            data-bs-target="#bookingModal"
+                            onclick="document.getElementById('bookingModal').style.display='block'">
                         Booking
                     </button>
                 </div>

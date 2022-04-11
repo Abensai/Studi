@@ -66,6 +66,11 @@ class Establishment
      */
     private $suites;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Booking::class, mappedBy="establishment", cascade={"persist", "remove"})
+     */
+    private $booking;
+
     public function __construct()
     {
         $this->suites = new ArrayCollection();
@@ -207,6 +212,23 @@ class Establishment
                 $suite->setEstablishment(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getBooking(): ?Booking
+    {
+        return $this->booking;
+    }
+
+    public function setBooking(Booking $booking): self
+    {
+        // set the owning side of the relation if necessary
+        if ($booking->getSuite() !== $this) {
+            $booking->setSuite($this);
+        }
+
+        $this->booking = $booking;
 
         return $this;
     }

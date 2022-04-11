@@ -10,5 +10,17 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class SuiteController extends AbstractController
 {
+    /**
+     * @Route("/suite", name="booking_suite")
+     */
+    public function index(SuiteRepository $suiteRepository): Response
+    {
+        $suites = $suiteRepository->findAll();
+        $a = [];
+        foreach ($suites as $suite) {
+            $a[] = $suite->availabilitySuite();
+        }
 
+        return $this->json($a);
+    }
 }
