@@ -6,6 +6,7 @@
 <section>
     <div class="container">
         <table class="table">
+            <caption>The last Reservation</caption>
             <thead>
             <tr>
                 <th scope="col">Number</th>
@@ -29,6 +30,11 @@
             </tr>
             {% endfor %}
             </tbody>
+            <tfoot>
+            <tr>
+                <td>you have three days from the reservation to modify it</td>
+            </tr>
+            </tfoot>
         </table>
     </div>
 </section>

@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Form\RegistrationFormType;
 use App\Entity\User;
+use App\Form\RegistrationFormType;
 use App\Security\AppUserAuthenticator;
 use App\Security\EmailVerifier;
 use Doctrine\ORM\EntityManagerInterface;
@@ -85,10 +85,8 @@ class RegistrationController extends AbstractController
 
             return $this->redirectToRoute('app_register');
         }
-
-        return $this->redirectToRoute('app_infos');
         $this->addFlash('success', 'Your email address has been verified.');
 
-        return $this->redirectToRoute('app_register');
+        return $this->redirectToRoute('app_infos');
     }
 }
