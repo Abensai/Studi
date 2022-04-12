@@ -169,3 +169,23 @@ a {
 .foot-lnk {
   text-align: center;
 }
+
+.btn-register {
+  margin-top: 2.5rem;
+  cursor: pointer;
+  color: var(--white);
+  background-color: var(--dark);
+  &:hover {
+    background-color: var(--sand);
+  }
+}
+.list-group-item.active {
+  background-color: var(--sand);
+  border-color: var(--dark);
+}
+
+.validate-booking {
+  #booking_check_availability {
+    display: none;
+  }
+}

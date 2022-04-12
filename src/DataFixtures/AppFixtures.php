@@ -169,7 +169,8 @@ class AppFixtures extends Fixture
         // Gallery Fixtures
         $galleryCollection = [];
         foreach (glob('./assets/gallery/*') as $filename) {
-            $galleryCollection[] = $filename;
+            $filename = explode('/', $filename);
+            $galleryCollection[] = '/build/images/'.$filename[3];
         }
 
         $counterImg = 0;
@@ -179,7 +180,6 @@ class AppFixtures extends Fixture
 
                 $gallery->setTitre(self::getImageName($galleryCollection[$counterImg]))
                     ->setLien($galleryCollection[$counterImg])
-                    ->setTaille(filesize($galleryCollection[$counterImg]))
                     ->setSlug($faker->slug())
                     ->setSuite($this->getReference("suite_$i"));
                 $manager->persist($gallery);

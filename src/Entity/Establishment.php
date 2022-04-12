@@ -67,7 +67,7 @@ class Establishment
     private $suites;
 
     /**
-     * @ORM\OneToOne(targetEntity=Booking::class, mappedBy="establishment", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Booking::class, mappedBy="establishment")
      */
     private $booking;
 

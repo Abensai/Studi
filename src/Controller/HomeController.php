@@ -17,7 +17,6 @@ class HomeController extends AbstractController
     {
         return $this->render('home/index.html.twig', [
             'galleries' => $galleryRepository->lastFive(),
-            // 'labelSuite' => $galleryRepository->getLabelSuite(Suite::class),
         ]);
     }
 }

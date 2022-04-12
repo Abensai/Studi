@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}History{% endblock %}
+
+{% block body %}
+<section>
+    <div class="container">
+        <table class="table">
+            <caption>The last Reservation</caption>
+            <thead>
+            <tr>
+                <th scope="col">Number</th>
+                <th scope="col">Establishment</th>
+                <th scope="col">Suite</th>
+                <th scope="col">Date Start</th>
+                <th scope="col">Date End</th>
+                <th scope="col">Price</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for history in histories %}
+            {% set counter = ( counter | default(0) ) + 1 %}
+            <tr>
+                <th scope="row">{{ counter }}</th>
+                <td>{{ history.getestablishment.nom }}</td>
+                <td>{{ history.getsuite.titre }}</td>
+                <td>{{ history.getDateDebut|date('d/m/Y')  }}</td>
+                <td>{{ history.getDateFin|date('d/m/Y')  }}</td>
+                <td>{{ history.prix }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <td>you have three days from the reservation to modify it</td>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
+</section>
+{% endblock %}

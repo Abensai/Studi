@@ -2,14 +2,11 @@
 
 namespace App\Repository;
 
-use App\Entity\Establishment;
-use App\Entity\Service;
 use App\Entity\Suite;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * @method Suite|null find($id, $lockMode = null, $lockVersion = null)
@@ -48,7 +45,6 @@ class SuiteRepository extends ServiceEntityRepository
         }
     }
 
-
     /**
      * @return Suite[]
      */
@@ -61,32 +57,12 @@ class SuiteRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    // /**
-    //  * @return Suite[] Returns an array of Suite objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    public function findById($suiteId): array
     {
         return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
+            ->where('s.id LIKE :id')
+            ->setParameter('id', $suiteId)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Suite
-    {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

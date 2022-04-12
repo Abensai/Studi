@@ -42,13 +42,6 @@ class EstablishmentController extends AbstractController
         $form = $this->createForm(BookingType::class, $booking);
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            //$booking = $form->getData();
-            // dd($check);
-            // $bookingService->persistContact($booking);
-           // return $this->json($check);
-        }
-
         return $this->render('suite/index.html.twig', [
             'establishment' => $establishment,
             'suites' => $suites,

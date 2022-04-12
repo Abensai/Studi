@@ -28,11 +28,6 @@ class Gallery
     private $lien;
 
     /**
-     * @ORM\Column(type="decimal", precision=10, scale=2)
-     */
-    private $taille;
-
-    /**
      * @ORM\Column(type="string", length=100)
      */
     private $slug;
@@ -68,18 +63,6 @@ class Gallery
     public function setLien(string $lien): self
     {
         $this->lien = $lien;
-
-        return $this;
-    }
-
-    public function getTaille(): ?string
-    {
-        return $this->taille;
-    }
-
-    public function setTaille(string $taille): self
-    {
-        $this->taille = $taille;
 
         return $this;
     }

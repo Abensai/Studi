@@ -57,32 +57,15 @@ class EstablishmentRepository extends ServiceEntityRepository
            ->getResult();
     }
 
-    // /**
-    //  * @return Establishment[] Returns an array of Establishment objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Establishment[]
+     */
+    public function findById($establishment): array
     {
         return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('e.id', 'ASC')
-            ->setMaxResults(10)
+            ->where('e.id LIKE :establishment')
+            ->setParameter('establishment', $establishment)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Establishment
-    {
-        return $this->createQueryBuilder('e')
-            ->andWhere('e.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }
