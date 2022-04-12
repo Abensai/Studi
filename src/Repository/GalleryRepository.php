@@ -57,16 +57,4 @@ class GalleryRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
-    /*public function getLabelSuite(Suite $suite)
-    {
-        return $this->createQueryBuilder()
-            ->Select('g', 's')
-            ->from(Suite::class, 'g')
-            ->leftJoin('g.suite_id', 's')
-            ->where('g.suite_id = s.id')
-            ->getQuery()
-            ->getResult();
-    }*/
-
 }
