@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg py-3 sticky-top navbar-light bg-white">
     <div class="container-fluid">
-        <a href="#" class="navbar-brand logo">HYPNOS Group Hotelier</a>
+        <a href="{{ path('app_home') }}" class="navbar-brand logo">HYPNOS Group Hotelier</a>
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -8,19 +8,24 @@
             <div class="navbar-nav ms-auto">
                 <a href="{{ path('app_home') }}" class="nav-item nav-link active">Home</a>
                 <a href="{{ path('app_establishment') }}" class="nav-item nav-link">Establishment</a>
-                <div class="nav-item dropdown">
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
-                    <div class="dropdown-menu">
-                        <a href="#" class="dropdown-item">Infos</a>
-                        <a href="#" class="dropdown-item">Reservations</a>
-                        <a href="#" class="dropdown-item">Contact</a>
+                {% if app.user %}
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
+                        <div class="dropdown-menu">
+                            <a href="{{ path('app_infos') }}" class="dropdown-item">Infos</a>
+                            <a href="{{ path('app_history') }}" class="dropdown-item">Reservations</a>
+                        </div>
                     </div>
-                </div>
+                {% endif %}
                 <a href="{{ path('app_home', {'_fragment': 'about'}) }}" class="nav-item nav-link" tabindex="-1">About Us</a>
             </div>
             <div class="navbar-nav ms-auto">
                 <a href="{{ path('app_contact') }}" class="nav-item nav-link">Contact</a>
-                <a href="{{ path('app_login') }}" class="nav-item nav-link">Login</a>
+                {% if app.user %}
+                    <a href="{{ path('app_logout') }}" class="nav-item nav-link">Logout</a>
+                {% else %}
+                    <a href="{{ path('app_login') }}" class="nav-item nav-link">Login</a>
+                {% endif %}
             </div>
         </div>
     </div>

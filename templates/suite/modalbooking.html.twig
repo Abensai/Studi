@@ -4,6 +4,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Booking </h5>
+                {% if app.user %}
+                    <input type="hidden" id="status_auth" name="status_auth"
+                           value="isLogged"
+                    >
+                {% endif %}
             </div>
             <div class="modal-body">
                 <section class="booking">
@@ -99,23 +104,39 @@
             let url = "/suite";
 
             axios.get(url).then(response => {
-                const check = document.querySelector("div.response-availability");
-                const id = document.querySelector("#booking_suite").value
+                const divAvailability = document.querySelector("div.response-availability");
+                const idSuite = parseInt(document.querySelector("#booking_suite").value);
+                let statusAvailability = 0;
 
                 response.data.forEach(suite => {
-                    if(suite.id == id){
-                        const node = document.createElement("span");
+                    if(suite.id === idSuite){
+                        const nodeStatus = document.createElement("div");
+                        const nodeLink = document.createElement("a");
                         if (suite.availability === true) {
-                            node.classList.add("text-success");
-                            node.classList.add("ajax");
-                            node.textContent = "This Suite is available";
-                            check.appendChild(node);
+                            statusAvailability = 1;
+                            nodeStatus.classList.add("text-success");
+                            nodeStatus.classList.add("ajax");
+                            nodeStatus.classList.add("ml-3");
+                            nodeStatus.textContent = "This Suite is available";
+
+                            let statusAuth = authStatus();
+                            if(statusAuth === 'isLogged') {
+                                nodeLink.textContent = "Confirm your reservation"
+                                nodeLink.href = "/infos";
+                            } else {
+                                nodeLink.textContent = "register you to validate your reservation: register";
+                                nodeLink.href = "/register";
+                            }
+
+                            divAvailability.appendChild(nodeStatus);
+                            divAvailability.appendChild(nodeLink);
+                            setCookie(1, statusAvailability);
                         } else {
-                            node.classList.add("text-danger");
-                            node.classList.add("ajax");
-                            node.textContent = 'This Suite is unavailable. check other suite';
+                            nodeStatus.classList.add("text-danger");
+                            nodeStatus.classList.add("ajax");
+                            nodeStatus.textContent = 'This suite is unavailable. check other suite';
                         }
-                        check.appendChild(node);
+                        divAvailability.appendChild(nodeStatus);
                     }
                 });
             });
@@ -126,6 +147,42 @@
                 const check = document.querySelector("div.response-availability");
                 check.removeChild(check.firstElementChild);
             }
+        }
+
+        function authStatus () {
+            let paramAuth = document.getElementById("status_auth");
+            let statusAuth = 'notLogged';
+
+            if(paramAuth) {
+                statusAuth = paramAuth.value;
+            }
+
+            return statusAuth;
+        }
+
+        function setCookie(exDays, statusAvailability) {
+            const d = new Date();
+            d.setTime(d.getTime() + (exDays*24*60*60*1000));
+            let expires = "expires="+ d.toUTCString();
+
+            let cName = "dataBooking";
+            let cValue = new Array(5);
+
+            let dateStart = document.querySelector("#booking_date_debut_year").value + "/" +
+                document.querySelector("#booking_date_debut_month").value + "/" +
+                document.querySelector("#booking_date_debut_day").value;
+
+            let dateEnd = document.querySelector("#booking_date_fin_year").value + "/" +
+            document.querySelector("#booking_date_fin_month").value + "/" +
+            document.querySelector("#booking_date_fin_day").value;
+
+            cValue[0] = document.querySelector("#booking_establishment").value;
+            cValue[1] = document.querySelector("#booking_suite").value;
+            cValue[2] = dateStart;
+            cValue[3] = dateEnd;
+            cValue[4] = statusAvailability;
+
+            document.cookie = cName + "=" + cValue + ";" + expires + ";path=/";
         }
     </script>
 {% endblock %}

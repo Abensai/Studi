@@ -27,7 +27,29 @@ class BookingService
         return $booking;
     }
 
-    public function updateStatus(Suite $suite): void
+    public function formToValidate($data): Booking
+    {
+        $booking = new Booking();
+
+        $booking->setEstablishment($data['establishment'])
+                ->setUser($data['user'])
+                ->setSuite($data['suite'])
+                ->setDateDebut($data['date_debut'])
+                ->setDateFin($data['date_fin'])
+                ->setPrix($data['suite']->getPrix());
+
+        return $booking;
+    }
+
+    public function persistBooking(Booking $booking): void
+    {
+        $this->manager->persist($booking);
+        self::updateStatus($booking->getSuite());
+        $this->manager->flush();
+        $this->flash->add('success', 'Your reservation has been validated');
+    }
+
+    private function updateStatus(Suite $suite): void
     {
         $suite->setDisponibilite(false);
 
