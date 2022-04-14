@@ -63,6 +63,14 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
+    public function getAllUser()
+    {
+        return $this->createQueryBuilder('u')
+            ->orderBy('u.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
     /**
      * @throws NonUniqueResultException
      */
@@ -75,15 +83,11 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
             ->getOneOrNullResult();
     }
 
-    /**
-     * @throws NonUniqueResultException
-     */
-    public function getUserAdmin()
+    public function getUserManager()
     {
         return $this->createQueryBuilder('u')
             ->where('u.roles LIKE :roles')
-            ->setParameter('roles', '%"ROLE_ADMIN"%')
-            ->getQuery()
-            ->getOneOrNullResult();
+            ->setParameter('roles', '%"ROLE_MANAGER"%')
+            ->orderBy('u.id', 'DESC');
     }
 }
