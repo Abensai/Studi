@@ -6,6 +6,7 @@ use App\Entity\Establishment;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -67,5 +68,12 @@ class EstablishmentRepository extends ServiceEntityRepository
             ->setParameter('establishment', $establishment)
             ->getQuery()
             ->getResult();
+    }
+
+    public function getEstateManager($manager): QueryBuilder
+    {
+        return $this->createQueryBuilder('e')
+            ->where('e.user IN (:manager)')
+            ->setParameter('manager', $manager);
     }
 }

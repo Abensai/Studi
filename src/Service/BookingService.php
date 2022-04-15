@@ -49,7 +49,7 @@ class BookingService
         $this->flash->add('success', 'Your reservation has been validated');
     }
 
-    private function updateStatus(Suite $suite): void
+    public function updateStatus(Suite $suite): void
     {
         $suite->setDisponibilite(false);
 
