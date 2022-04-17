@@ -13,15 +13,9 @@ class HistoryController extends AbstractController
 {
     /**
      * @Route("/history", name="app_history")
-     * @throws \Doctrine\ORM\NonUniqueResultException
      */
-    public function index(BookingRepository $bookingRepository, UserRepository $userRepository, AuthenticationUtils $authenticationUtils): Response
+    public function index(): void
     {
-        $user = $userRepository->getUser($authenticationUtils->getLastUsername());
-        $history = $bookingRepository->findById($user);
-
-        return $this->render('connect/history.html.twig', [
-            'histories' => $history,
-        ]);
+        return;
     }
 }

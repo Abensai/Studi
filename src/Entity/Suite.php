@@ -261,4 +261,9 @@ class Suite
             'availability' => $this->getDisponibilite(),
         ];
     }
+
+    public function __toString(): string
+    {
+        return $this->titre;
+    }
 }

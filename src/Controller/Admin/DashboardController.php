@@ -52,6 +52,7 @@ class DashboardController extends AbstractDashboardController
         if (in_array('ROLE_ADMIN', $manager->getRoles())) {
             yield MenuItem::linkToCrud('Establishment', 'fa fa-building-o', Establishment::class);
             yield MenuItem::linkToCrud('User', 'fa fa-users', User::class);
+            yield MenuItem::linkToCrud('Suite', 'fa fa-bed', Suite::class);
         }
 
         if (in_array('ROLE_MANAGER', $manager->getRoles())) {
