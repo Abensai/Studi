@@ -16,6 +16,5 @@ class HistoryController extends AbstractController
      */
     public function index(): void
     {
-        return;
     }
 }
