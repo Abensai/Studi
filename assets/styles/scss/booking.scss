@@ -27,12 +27,15 @@
   resize: none;
 }
 
-.form-btn {
-  margin-top: 2.5rem;
+#booking_update_update, .form-btn {
+  margin-top: 2rem;
   cursor: pointer;
-  color: var(--white);
-  background-color: var(--dark);
+  color: var(--dark);
+  background-color: var(--sand);
+  border-color: var(--dark);
   &:hover {
-    background-color: var(--sand);
+    color: var(--white);
+    background-color: var(--dark);
+    border-color: var(--sand);
   }
 }
