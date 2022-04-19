@@ -162,7 +162,7 @@ class AppFixtures extends Fixture
                 $suite->addService($service);
 
                 $manager->persist($service);
-                $manager->persist($service);
+                $manager->persist($suite);
             }
         }
 
@@ -186,6 +186,32 @@ class AppFixtures extends Fixture
                 ++$counterImg;
             }
         }
+
+        // Test Fonctionnel Fixtures
+
+        $establishmentTest = new Establishment();
+
+        $establishmentTest->setNom('Etablissement Test')
+            ->setAdresse('1 rue test')
+            ->setVille('Test')
+            ->setDescription('Etablissement créé pour les test fonctionnels')
+            ->setPageWeb('www.test.com')
+            ->setSlug('establishment-test')
+            ->setImage('/build/images/hotel-plaza-gold.jpeg');
+
+        $suiteTest = new Suite();
+
+        $suiteTest->setTitre('Suite Test')
+            ->setSlug('suite-test')
+            ->setPrix(1000)
+            ->setDescription('Suite créé pour les test fonctionnels')
+            ->setDisponibilite(true)
+            ->setImage('/build/images/lux-1.jpg')
+            ->setLienBooking('www.booking.com/suite-test')
+            ->setEstablishment($establishmentTest);
+
+        $manager->persist($establishmentTest);
+        $manager->persist($suiteTest);
 
         $manager->flush();
     }

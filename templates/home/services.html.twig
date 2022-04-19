@@ -3,55 +3,26 @@
         <div class="row mb-5">
             <div class="col-md-8 mx-auto text-center">
                 <h2>Our Services</h2>
-                <h6>SERVICES</h6>
+                <h3>SERVICES</h3>
                 <p>Description services</p>
             </div>
         </div>
         <div class="row g-4">
+            {% for service in services %}
             <div class="col-lg-4 col-sm-6">
+
                 <div class="service card-effect">
                     <div class="iconbox">
                         <em>
-                            <em class="fa-solid fa-hotel"></em>
+                            <em class="{{ service.icon }}"></em>
                         </em>
                     </div>
-                    <h5 class="mt-4 mb-2">HOTELIER</h5>
-                    <p>Description service 1 escription</p>
+                    <h4 class="mt-4 mb-2">{{ service.titre }}</h4>
+                    <p>{{ service.description|u.truncate(100, '...', false) }}</p>
                 </div>
+
             </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="service card-effect">
-                    <div class="iconbox">
-                        <em>
-                            <em class="fa-solid fa-spa"></em>
-                        </em>
-                    </div>
-                    <h5 class="mt-4 mb-2">SPA</h5>
-                    <p>Description service 1</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="service card-effect">
-                    <div class="iconbox">
-                        <em>
-                            <em class="fa-solid fa-utensils"></em>
-                        </em>
-                    </div>
-                    <h5 class="mt-4 mb-2">RESTAURANT</h5>
-                    <p>Description service 1</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-sm-6">
-                <div class="service card-effect">
-                    <div class="iconbox">
-                        <em>
-                            <em class="fa-solid fa-hotel"></em>
-                        </em>
-                    </div>
-                    <h5 class="mt-4 mb-2">HOTELIER</h5>
-                    <p>Description service 1 escription</p>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </section>

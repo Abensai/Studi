@@ -53,15 +53,17 @@
                             </label>
                             {{ form_widget(form_booking.date_fin) }}
                         </div>
+
+                        <div class="form-group mb-0">
+                            {{ form_widget(form_booking.check_availability, {'attr': {'class': 'js-suites'}}) }}
+                        </div>
+
                     </div>
                     <div class="response-availability text-center mt-5"></div>
                 </section>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary js-suites-close" data-bs-dismiss="modal">Cancel</button>
-                <div class="form-group mb-0">
-                    {{ form_widget(form_booking.check_availability, {'attr': {'class': 'js-suites'}}) }}
-                </div>
             </div>
             {{ form_end(form_booking) }}
         </div>
@@ -83,8 +85,7 @@
         }
 
         function yourHandler(e){
-            e = e || window.event;
-            var target = e.target || e.srcElement;
+            let target = e.target;
             if (target.className.match('.btn-booking'))
             {
                 const $select = document.querySelector('#booking_suite');
@@ -94,7 +95,7 @@
     </script>
     <script>
         // check availability suite
-        window.addEventListener("load", function(event) {
+        window.addEventListener("load", function() {
             document.querySelector("button.js-suites").addEventListener("click", getAvailabilitySuite);
             document.querySelector("button.js-suites-close").addEventListener("click", quitBooking);
         });
@@ -107,12 +108,11 @@
                 const divAvailability = document.querySelector("div.response-availability");
                 const idSuite = parseInt(document.querySelector("#booking_suite").value);
                 let statusAvailability = 0;
-
-                response.data.forEach(suite => {
-                    if(suite.id === idSuite){
+                response.data.forEach(({availability, id}) => {
+                    if(id === idSuite){
                         const nodeStatus = document.createElement("div");
                         const nodeLink = document.createElement("a");
-                        if (suite.availability === true) {
+                        if (availability === true) {
                             statusAvailability = 1;
                             nodeStatus.classList.add("text-success");
                             nodeStatus.classList.add("ajax");
@@ -122,7 +122,7 @@
                             let statusAuth = authStatus();
                             if(statusAuth === 'isLogged') {
                                 nodeLink.textContent = "Confirm your reservation"
-                                nodeLink.href = "/infos";
+                                nodeLink.href = "/dashboard";
                             } else {
                                 nodeLink.textContent = "register you to validate your reservation: register";
                                 nodeLink.href = "/register";
@@ -142,7 +142,7 @@
             });
         }
 
-        function quitBooking (event) {
+        function quitBooking () {
             if(document.querySelector("span.ajax")) {
                 const check = document.querySelector("div.response-availability");
                 check.removeChild(check.firstElementChild);

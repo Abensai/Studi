@@ -24,21 +24,6 @@ a {
   padding: 90px 70px 50px 70px;
   background: var(--log);
   opacity: 0.9;
-
-  .sign-in-htm, .sign-up-htm {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
-    transform: rotateY(180deg);
-    backface-visibility: hidden;
-    transition: all .4s linear;
-  }
-
-  .sign-in, .sign-up {
-    display: none;
-  }
 }
 
 .login-form .group .check {
@@ -155,7 +140,7 @@ a {
 }
 
 .login-html {
-  .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm, .sign-up:checked + .tab + .login-form .sign-up-htm {
+  .sign-in:checked + .tab + .sign-up + .tab + .login-form, .sign-up:checked + .tab + .login-form {
     transform: rotate(0);
   }
 }
@@ -164,10 +149,6 @@ a {
   height: 2px;
   margin: 60px 0 50px 0;
   background: var(--dark-light);
-}
-
-.foot-lnk {
-  text-align: center;
 }
 
 .btn-register {

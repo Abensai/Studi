@@ -26,7 +26,7 @@ class EstablishmentController extends AbstractController
     }
 
     /**
-     * @Route("/establishment/{id}", name="app_establishment_suite")
+     * @Route("/establishment/{slug}", name="app_establishment_suite")
      */
     public function suites(Establishment $establishment,
                            SuiteRepository $suiteRepository,

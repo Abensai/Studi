@@ -20,7 +20,7 @@
                     <div class="mr-auto mb-5">
                     <div class="establishment">
                         <img src="{{ establishment.image }}" alt="">
-                        <a class="mb-3" href="{{ path('app_establishment_suite', {'id': establishment.id}) }}"><h5 class="mt-4 mb-2">{{ establishment.nom }}</h5></a>
+                        <a class="mb-3" href="{{ path('app_establishment_suite', {'slug': establishment.slug}) }}"><h5 class="mt-4 mb-2">{{ establishment.nom }}</h5></a>
                         <div class="mt-2">
                             <div class="mt-2 mb-2">
                                 <p>{{ establishment.description }}</p>
@@ -32,7 +32,7 @@
                             </ul>
                         </div>
                         <em class="fa-solid fa-bell-concierge"></em>
-                        <a href="{{ path('app_establishment_suite', {'id': establishment.id}) }}" class="call-to-action-book"> Booking</a>
+                        <a href="{{ path('app_establishment_suite', {'slug': establishment.slug}) }}" class="call-to-action-book"> Booking</a>
                     </div>
                 </div>
                 {% endfor %}
