@@ -3,21 +3,25 @@
         <div class="row mb-5">
             <div class="col-md-8 mx-auto text-center">
                 <h2>Our Values</h2>
-                <h6>ABOUT US</h6>
+                <h3>ABOUT US</h3>
             </div>
         </div>
         {% for gallery in galleries %}
-        <article class="postcard light blue">
+        <article class="postcard light gold">
             <a class="postcard__img_link" href="{{ path('app_establishment') }}">
                 <img class="postcard__img" src="{{ gallery.lien }}" alt="{{ gallery.titre }}" />
             </a>
             <div class="postcard__text t-dark">
-                <h1 class="postcard__title blue"><a href="{{ path('app_establishment') }}">{{ gallery.titre }}</a></h1>
+                <h4 class="postcard__title gold"><a href="{{ path('app_establishment') }}">{{ gallery.titre }}</a></h4>
                 <div class="postcard__subtitle small">
                     <em class="fa-solid fa-city mr-3"></em> {{ gallery.titre }}
                 </div>
                 <div class="postcard__bar"></div>
-                <div class="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, fugiat asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius! Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero. Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem excepturi, illum quos!</div>
+                <div class="postcard__preview-txt">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
+                    fugiat asperiores inventore beatae accusamus odit minima enim, commodi quia, doloribus eius!
+                    Ducimus nemo accusantium maiores velit corrupti tempora reiciendis molestiae repellat vero.
+                    Eveniet ipsam adipisci illo iusto quibusdam, sunt neque nulla unde ipsum dolores nobis enim quidem
+                    excepturi, illum quos!</div>
             </div>
         </article>
         {% endfor %}

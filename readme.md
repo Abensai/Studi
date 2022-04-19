@@ -80,8 +80,27 @@ symfony console doctrine:fixtures:load
 ```
 
 ### Lancer tests en local
+#### Créer ENV=test
+Créer une bdd de test, 
+```bash
+symfony console doctrine:database:create --env=test
+```
+jouer les migrations et fixtures
+```bash
+symfony console doctrine:migrations:migrate -n --env=test
+symfony console doctrine:fixtures:load -n --env=test
+```
+#### Tests Technique
 ```bash
 php bin/phpunit --testdox
+```
+#### Tests Fonctionnel
+```bash
+
+```
+#### Tests Coverage
+```bash
+php bin/phpunit --coverage-html var/log/test/test-coverage
 ```
 
 ## Usage

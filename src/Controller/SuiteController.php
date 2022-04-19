@@ -16,11 +16,11 @@ class SuiteController extends AbstractController
     public function index(SuiteRepository $suiteRepository): Response
     {
         $suites = $suiteRepository->findAll();
-        $a = [];
+        $data = [];
         foreach ($suites as $suite) {
-            $a[] = $suite->availabilitySuite();
+            $data[] = $suite->availabilitySuite();
         }
 
-        return $this->json($a);
+        return $this->json($data);
     }
 }

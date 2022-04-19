@@ -28,7 +28,6 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
-
         // Data
         $user = new stdClass();
         $user->userAll = [
@@ -88,12 +87,9 @@ class AppFixtures extends Fixture
                 ->setNom($faker->firstName())
                 ->setPrenom($faker->lastName())
                 ->setTelephone($faker->phoneNumber());
-
             $user->setPassword(self::hashPassword($user));
-
             if (str_contains($email, 'manager')) {
                 $establishment = new Establishment();
-
                 $establishment->setNom($hotels[$counter]['name'])
                     ->setAdresse($faker->address())
                     ->setVille($faker->city())
@@ -103,14 +99,10 @@ class AppFixtures extends Fixture
                     ->setSlug($faker->slug(3))
                     ->setImage($hotels[$counter]['image']);
                 $manager->persist($establishment);
-
                 $user->setEstablishment($establishment);
-
                 $this->addReference('establishment_'.$counter, $establishment);
-
                 ++$counter;
             }
-
             $manager->persist($user);
         }
 
@@ -128,9 +120,7 @@ class AppFixtures extends Fixture
                     ->setLienBooking($faker->url())
                     ->setPrix($faker->randomFloat(2, 500, 9999))
                     ->setImage('/build/images/lux-'.strval($j).'.jpg');
-
                 $this->addReference('suite_'.$key, $suite);
-
                 $manager->persist($suite);
                 ++$key;
             }
@@ -146,9 +136,7 @@ class AppFixtures extends Fixture
                 ->setPrix($faker->randomFloat(2, 10, 999))
                 ->setSlug($faker->slug(3))
                 ->setIcon($iconService[$j]);
-
             $this->addReference('service_'.$key, $service);
-
             $manager->persist($service);
             ++$key;
         }
@@ -160,9 +148,8 @@ class AppFixtures extends Fixture
                 $service = $this->getReference("service_$randomKey");
                 $service->addSuite($suite);
                 $suite->addService($service);
-
                 $manager->persist($service);
-                $manager->persist($service);
+                $manager->persist($suite);
             }
         }
 
@@ -172,7 +159,6 @@ class AppFixtures extends Fixture
             $filename = explode('/', $filename);
             $galleryCollection[] = '/build/images/'.$filename[3];
         }
-
         $counterImg = 0;
         for ($i = 0; $i < 18; ++$i) {
             for ($j = 0; $j < 3; ++$j) {
@@ -187,7 +173,36 @@ class AppFixtures extends Fixture
             }
         }
 
+        // Test Fonctionnel Fixtures
+        self::dataTest($manager);
+
         $manager->flush();
+    }
+
+    private function dataTest(ObjectManager $manager): void
+    {
+        $establishmentTest = new Establishment();
+
+        $establishmentTest->setNom('Etablissement Test')
+            ->setAdresse('1 rue test')
+            ->setVille('Test')
+            ->setDescription('Etablissement créé pour les test fonctionnels')
+            ->setPageWeb('www.test.com')
+            ->setSlug('establishment-test')
+            ->setImage('/build/images/hotel-plaza-gold.jpeg');
+
+        $suiteTest = new Suite();
+
+        $suiteTest->setTitre('Suite Test')
+            ->setSlug('suite-test')
+            ->setPrix(1000)
+            ->setDescription('Suite créé pour les test fonctionnels')
+            ->setDisponibilite(true)
+            ->setImage('/build/images/lux-1.jpg')
+            ->setLienBooking('www.booking.com/suite-test')
+            ->setEstablishment($establishmentTest);
+        $manager->persist($establishmentTest);
+        $manager->persist($suiteTest);
     }
 
     private function hashPassword(User $user): string

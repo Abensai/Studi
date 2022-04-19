@@ -1,15 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Spectral&display=swap');
 
 :root {
-  --primary: #e6c619;
+  --sand: #e3c56b;
+  --primary: #daa520;
   --dark: #303030;
   --body: #d2cdcd;
   --dark-light: #4c4c4c;
-  --cyan: #84deee;
-  --green: #81d742;
-  --purple: #ce78db;
-  --peach: #df8888;
-  --sand: #e3c56b;
   --log: #1c1911;
   --white: #ffffff;
   --box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
@@ -30,14 +26,14 @@ main{
   position:relative;
 }
 
-h1,h2,h3,h4,h5,
+h1,h2,h4,h5,
 .display-4 {
   color: var(--dark);
   font-weight: 700;
   font-family: var(--font-special);
 }
 
-h6 {
+h3 {
   color: var(--sand);
   font-weight: 700;
   font-family: var(--font-body);

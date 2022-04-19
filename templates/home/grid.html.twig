@@ -1,14 +1,14 @@
 <section class="image-gallery">
     {% for gallery in galleries %}
     <div class="image-box">
-        <img src="{{ gallery.lien }}" alt="{{ gallery.titre }}" />
+        <img class="postcard__img" src="{{ gallery.lien }}" alt="{{ gallery.titre }}" />
         <div class="overlay">
             <div class="details">
                 <h3 class="title">
-                    <a href="#"></a>
+                    {{ gallery.titre }}
                 </h3>
                 <span class="category">
-              <a href="{{ path('app_establishment') }}">{{ gallery.titre }} </a>
+              <a href="{{ path('app_establishment') }}">{{ gallery.getSuite }} </a>
             </span>
             </div>
         </div>

@@ -18,8 +18,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class DashboardUserController extends AbstractController
 {
     /**
-     * @Route("/infos", name="app_infos")
-     *
+     * @Route("/dashboard", name="app_infos")
      * @throws NonUniqueResultException
      * @throws \Exception
      */
@@ -57,13 +56,13 @@ class DashboardUserController extends AbstractController
                 return $this->redirectToRoute('app_infos');
             }
 
-            return $this->render('connect/infos.html.twig', [
+            return $this->render('connect/dashboard.html.twig', [
                 'userInfos' => $infos,
                 'form_validate' => $form->createView(),
             ]);
         }
 
-        return $this->render('connect/infos.html.twig', [
+        return $this->render('connect/dashboard.html.twig', [
             'userInfos' => $infos,
         ]);
     }
