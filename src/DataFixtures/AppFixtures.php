@@ -174,7 +174,13 @@ class AppFixtures extends Fixture
         }
 
         // Test Fonctionnel Fixtures
+        self::dataTest($manager);
 
+        $manager->flush();
+    }
+
+    private function dataTest(ObjectManager $manager): void
+    {
         $establishmentTest = new Establishment();
 
         $establishmentTest->setNom('Etablissement Test')
@@ -197,8 +203,6 @@ class AppFixtures extends Fixture
             ->setEstablishment($establishmentTest);
         $manager->persist($establishmentTest);
         $manager->persist($suiteTest);
-
-        $manager->flush();
     }
 
     private function hashPassword(User $user): string
