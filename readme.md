@@ -4,7 +4,7 @@ Studi ECF
 Application Symfony permettant de réserver des suites du groupe hôtelier Hypnos
 
 ## Pré-requis
-* PHP 7.4
+* PHP 8.1.5
 * Composer 2.2.9
 * Symfony CLI 5.4.1
 * nodejs 16.14.0
@@ -90,13 +90,9 @@ jouer les migrations et fixtures
 symfony console doctrine:migrations:migrate -n --env=test
 symfony console doctrine:fixtures:load -n --env=test
 ```
-#### Tests Technique
+#### Tests Technique et Fonctionnel
 ```bash
 php bin/phpunit --testdox
-```
-#### Tests Fonctionnel
-```bash
-
 ```
 #### Tests Coverage
 ```bash
@@ -137,7 +133,7 @@ symfony console app:send-contact
 ```
 
 ## Amélioration
-
+        - Augmenter le pourcentage des tests coverage afin d'automatiser un maximum de test
 
 ## License
 Ali BEN SAIAD
