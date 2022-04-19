@@ -10,35 +10,49 @@ jobs:
   symfony-tests:
     runs-on: ubuntu-latest
     steps:
-    - uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
-      with:
-        php-version: '8.1.5'
-    - uses: actions/checkout@v2
-    - name: Copy .env.test.local
-      run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v2
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
-    - name: Install Dependencies
-      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-    - name: Create Database
-      run: |
-        mkdir -p data
-        touch data/database.sqlite
-    - name: migration
-      run: php bin/console doctrine:migrations:migrate --no-interaction
-    - name: fixtures
-      run: php bin/console doctrine:fixtures:load --no-interaction
-    - name: npm
-      run: npm install
-    - name: build
-      run: npm run build
-    - name: Execute tests (Unit and Feature tests) via PHPUnit
-      env:
-        DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
-      run: php bin/phpunit
+      - uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
+        with:
+          php-version: '8.1.5'
+      - name: Checkout
+      - uses: actions/checkout@v2
+      - name: Setup PHP, extensions and composer with shivammathur/setup-php
+          uses: shivammathur/setup-php@verbose
+          with:
+            php-version: ${{ matrix.php-versions }}
+            extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, dom, filter, gd, iconv, json, mbstring, pdo
+      - name: Cache Composer packages
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+      - name: Install Composer Dependencies
+        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+      - name: Check PSR12 code style (PHP_CodeSniffer)
+          uses: chekalsky/phpcs-action@v1.2.0
+          with:
+            enable_warnings: true
+            installed_paths: '${{ github.workspace }}/vendor/squizlabs/php_codesniffer'
+            phpcs_bin_path: './vendor/bin/phpcs src --ignore="Migrations/"'
+      - name: Create Database
+        run: |
+          mkdir -p data
+          touch data/database.sqlite
+      - name: npm
+        run: npm install
+      - name: build
+        run: npm run build
+      - name: Migrations
+        env:
+          DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
+        run: php bin/console doctrine:migration:migrate
+      - name: Migrations
+          env:
+            DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
+          run: php bin/console doctrine:fixtures:load
+      - name: Execute tests (Unit and Feature tests) via PHPUnit
+        env:
+          DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
+        run: php bin/phpunit --stop-on-failure
