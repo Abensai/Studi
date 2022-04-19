@@ -16,10 +16,10 @@ jobs:
       - name: Checkout
       - uses: actions/checkout@v2
       - name: Setup PHP, extensions and composer with shivammathur/setup-php
-          uses: shivammathur/setup-php@verbose
-          with:
-            php-version: ${{ matrix.php-versions }}
-            extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, dom, filter, gd, iconv, json, mbstring, pdo
+        uses: shivammathur/setup-php@verbose
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: mbstring, xml, ctype, iconv, intl, pdo_sqlite, dom, filter, gd, iconv, json, mbstring, pdo
       - name: Cache Composer packages
         id: composer-cache
         uses: actions/cache@v2
@@ -31,11 +31,11 @@ jobs:
       - name: Install Composer Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Check PSR12 code style (PHP_CodeSniffer)
-          uses: chekalsky/phpcs-action@v1.2.0
-          with:
-            enable_warnings: true
-            installed_paths: '${{ github.workspace }}/vendor/squizlabs/php_codesniffer'
-            phpcs_bin_path: './vendor/bin/phpcs src --ignore="Migrations/"'
+        uses: chekalsky/phpcs-action@v1.2.0
+        with:
+          enable_warnings: true
+          installed_paths: '${{ github.workspace }}/vendor/squizlabs/php_codesniffer'
+          phpcs_bin_path: './vendor/bin/phpcs src --ignore="Migrations/"'
       - name: Create Database
         run: |
           mkdir -p data
@@ -49,8 +49,8 @@ jobs:
           DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
         run: php bin/console doctrine:migration:migrate
       - name: Migrations
-          env:
-            DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
+        env:
+          DATABASE_URL: sqlite:///%kernel.project_dir%/data/database.sqlite
           run: php bin/console doctrine:fixtures:load
       - name: Execute tests (Unit and Feature tests) via PHPUnit
         env:
