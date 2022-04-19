@@ -9,7 +9,7 @@ class BookingFunctionalTest extends WebTestCase
     public function testHomePage(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/');
+        $client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'HYPNOS Groupe Hôtelier');
@@ -18,7 +18,7 @@ class BookingFunctionalTest extends WebTestCase
     public function testEstablishmentPage(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/establishment');
+        $client->request('GET', '/establishment');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h6', 'ESTABLISHMENT');
@@ -27,7 +27,7 @@ class BookingFunctionalTest extends WebTestCase
     public function testSuitePage(): void
     {
         $client = static::createClient();
-        $crawler = $client->request('GET', '/establishment/establishment-test');
+        $client->request('GET', '/establishment/establishment-test');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Etablissement Test');
