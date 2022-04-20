@@ -24,9 +24,9 @@ class SendContactCommand extends Command
 
     public function __construct(
         ContactRepository $contactRepository,
-        MailerInterface   $mailer,
-        BookingService    $contactService,
-        UserRepository    $userRepository
+        MailerInterface $mailer,
+        BookingService $contactService,
+        UserRepository $userRepository
     ) {
         $this->contactRepository = $contactRepository;
         $this->mailer = $mailer;

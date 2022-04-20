@@ -9,6 +9,7 @@ use App\Repository\UserRepository;
 use App\Service\BookingService;
 use DateTime;
 use Doctrine\ORM\NonUniqueResultException;
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,9 +19,9 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 class DashboardUserController extends AbstractController
 {
     /**
-     * @Route("/dashboard", name="app_infos")
+     * @Route("/dashboard", name="app_dashboard")
      * @throws NonUniqueResultException
-     * @throws \Exception
+     * @throws Exception
      */
     public function index(AuthenticationUtils $authenticationUtils,
                             UserRepository $userRepository,
@@ -47,13 +48,13 @@ class DashboardUserController extends AbstractController
             $form = $this->createForm(BookingType::class, $booking);
             $form->handleRequest($request);
 
-            if ($form->isSubmitted() && $form->isValid()) {
+            if ($form->isSubmitted()) {
                 $validateBooking = $form->getData();
 
                 $bookingService->persistBooking($validateBooking);
 
                 setcookie('dataBooking', '', time() - (2 * 24 * 60 * 60 * 1000));
-                return $this->redirectToRoute('app_infos');
+                return $this->redirectToRoute('app_dashboard');
             }
 
             return $this->render('connect/dashboard.html.twig', [

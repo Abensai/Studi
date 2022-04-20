@@ -93,17 +93,17 @@
         <source>Hotels selected with great care</source>
         <target>Des hôtels sélectionnés avec le plus grand soin</target>
       </trans-unit>
-      <trans-unit id="DGkg3YJ" resname="value_hypnos">
-        <source>value_hypnos</source>
+      <trans-unit id="S4rbvnU" resname="The search for excellence makes it possible to ensure that everything is in place to offer the best: best materials, best human skills, best service delivery. It is a motivation that conditions us to give the best of ourselves.">
+        <source>The search for excellence makes it possible to ensure that everything is in place to offer the best: best materials, best human skills, best service delivery. It is a motivation that conditions us to give the best of ourselves.</source>
         <target>
           La recherche de l'excellence permet de s'assurer que tout est en place pour offrir le meilleur : meilleurs matériaux, meilleures compétences humaines, meilleure prestation de service. C'est une motivation qui nous conditionne à donner le meilleur de nous-mêmes.</target>
       </trans-unit>
-      <trans-unit id="gOx41v2" resname="value_team">
-        <source>value_team</source>
+      <trans-unit id="reKmTF6" resname="The best way to achieve exceptional service is to personalize the customer's stay, to do everything to know him to understand his needs. To surprise him, you have to anticipate his needs and design moments of life that will be memorable. Hoteliers are craftsmen of life experiences.">
+        <source>The best way to achieve exceptional service is to personalize the customer's stay, to do everything to know him to understand his needs. To surprise him, you have to anticipate his needs and design moments of life that will be memorable. Hoteliers are craftsmen of life experiences.</source>
         <target>La meilleure façon d'arriver à offrir un service exceptionnel est de personnaliser le séjour du client, de tout faire pour le connaître pour comprendre ses besoins. Pour le surprendre, il faut anticiper ses besoins et lui concevoir des moments de vie qui seront mémorables. Les hôteliers sont des artisans d'expériences de vie.</target>
       </trans-unit>
-      <trans-unit id="FGsO16t" resname="value_hotel">
-        <source>value_hotel</source>
+      <trans-unit id="dUqJLqa" resname="The promise of excellence to its customers, from all points of view. Through luxury services, but above all by personalizing the customer experience as much as possible. Exceptional service and an ultra-depth understanding of every customer need will be required. It is the permanent anticipation and the design of absolutely memorable moments in life.">
+        <source>The promise of excellence to its customers, from all points of view. Through luxury services, but above all by personalizing the customer experience as much as possible. Exceptional service and an ultra-depth understanding of every customer need will be required. It is the permanent anticipation and the design of absolutely memorable moments in life.</source>
         <target>La promesse d'excellence à ses clients, à tous points de vue. Par des services de luxe, mais surtout en personnalisant au maximum l'expérience client. Un service exceptionnel et une compréhension ultra approfondie du moindre besoin client seront nécessaires. C'est l'anticipation permanente et la conception de moments de vie absolument mémorables.</target>
       </trans-unit>
       <trans-unit id="zBoRvC4" resname="Luxury stays">
@@ -126,8 +126,8 @@
         <source>ESTABLISHMENT</source>
         <target>ÉTABLISSEMENT</target>
       </trans-unit>
-      <trans-unit id="qMn_z4L" resname="meta_description">
-        <source>meta_description</source>
+      <trans-unit id="HA0OpyK" resname="Hypnos Groupe web application allowing you to book suites in our most luxurious establishments and manage them with ease!">
+        <source>Hypnos Groupe web application allowing you to book suites in our most luxurious establishments and manage them with ease!</source>
         <target>Application Web Hypnos Groupe permettant de réserver des suites dans nos établissements les plus luxueux et de les gérer en toute simplicité !</target>
       </trans-unit>
       <trans-unit id="bDt7sm9" resname="Welcome to Hypnos !">
@@ -154,20 +154,20 @@
         <source>Suite</source>
         <target>Suite</target>
       </trans-unit>
-      <trans-unit id="6iwewga" resname="Date_debut">
-        <source>Date_debut</source>
+      <trans-unit id="gWlpMQG" resname="Start date">
+        <source>Start date</source>
         <target>Date de dèbut</target>
       </trans-unit>
-      <trans-unit id="bbglIqM" resname="Date_fin">
-        <source>Date_fin</source>
+      <trans-unit id="FDA6oMS" resname="End date">
+        <source>End date</source>
         <target>Date de fin</target>
       </trans-unit>
-      <trans-unit id="VMMk9sE" resname="Prix">
-        <source>Prix</source>
+      <trans-unit id="k8kchR5" resname="Price">
+        <source>Price</source>
         <target>Prix</target>
       </trans-unit>
-      <trans-unit id="Kw3N1AA" resname="actions">
-        <source>actions</source>
+      <trans-unit id=".4BZ3Gd" resname="Actions">
+        <source>Actions</source>
         <target>Actions</target>
       </trans-unit>
       <trans-unit id="D5lam8." resname="no records found">
