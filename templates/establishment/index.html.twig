@@ -1,18 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Establishment{% endblock %}
+{% block title %}{{ 'Establishment'|trans }}{% endblock %}
 
 {% block body %}
     <section id="establishment" class="esta bg-light">
         <div class="container">
             <div class="row mb-5">
                 <div class="col-md-8 mx-auto text-center">
-                    <h2>Our Establishments</h2>
-                    <h6 class="label-section">ESTABLISHMENT</h6>
-                    <p>Labore id occaecati temporibus quos. Sint necessitatibus esse sed dolorem labore.
-                        Neque ab et aspernatur rerum voluptatum. Voluptatem eos dignissimos error adipisci
-                        eligendi quo cupiditate. Sit quam placeat culpa nam qui blanditiis.
-                    </p>
+                    <h1>{{ 'Our Establishments'|trans }}</h1>
+                    <h3 class="label-section">
+                        {{ 'ESTABLISHMENT'|trans }}
+                    </h3>
+                    <p>{{ 'value_hotel'|trans }}</p>
                 </div>
             </div>
             <div class="d-flex p-2 justify-content-around flex-wrap">
@@ -20,7 +19,9 @@
                     <div class="mr-auto mb-5">
                     <div class="establishment">
                         <img src="{{ establishment.image }}" alt="">
-                        <a class="mb-3" href="{{ path('app_establishment_suite', {'slug': establishment.slug}) }}"><h5 class="mt-4 mb-2">{{ establishment.nom }}</h5></a>
+                        <a class="mb-3" href="{{ path('app_establishment_suite', {'slug': establishment.slug}) }}">
+                            <h5 class="mt-4 mb-2">{{ establishment.nom }}</h5>
+                        </a>
                         <div class="mt-2">
                             <div class="mt-2 mb-2">
                                 <p>{{ establishment.description }}</p>
@@ -28,11 +29,16 @@
                             <ul class="mt-2 mb-5">
                                 <li>{{ establishment.adresse }}</li>
                                 <li>{{ establishment.ville }}</li>
-                                <li><a href="{{ establishment.getPageWeb() }}" target="_blank" rel="noopener">{{ establishment.getPageWeb() }}</a></li>
+                                <li>
+                                    <a href="{{ establishment.getPageWeb() }}" target="_blank" rel="noopener">
+                                        {{ establishment.getPageWeb() }}
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                         <em class="fa-solid fa-bell-concierge"></em>
-                        <a href="{{ path('app_establishment_suite', {'slug': establishment.slug}) }}" class="call-to-action-book"> Booking</a>
+                        <a href="{{ path('app_establishment_suite', {'slug': establishment.slug}) }}"
+                           class="call-to-action-book">{{ 'Booking'|trans }}</a>
                     </div>
                 </div>
                 {% endfor %}

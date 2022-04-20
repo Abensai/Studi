@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\Repository\BookingRepository;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * @ORM\Entity(repositoryClass=BookingRepository::class)
  */
@@ -19,11 +19,20 @@ class Booking
 
     /**
      * @ORM\Column(type="datetime")
+     *
+     * @Assert\Date()
+     * @Assert\GreaterThan("today")
      */
     private $date_debut;
 
     /**
      * @ORM\Column(type="datetime")
+     *
+     * @Assert\Date()
+     * @Assert\Expression(
+     * "this.getDateDebut() < this.getDateFin()",
+     * message="La date fin ne doit pas être antérieure à la date début"
+     *  )
      */
     private $date_fin;
 
@@ -48,7 +57,6 @@ class Booking
      * @ORM\Column(type="decimal", precision=7, scale=2)
      */
     private $prix;
-
 
     public function getId(): ?int
     {

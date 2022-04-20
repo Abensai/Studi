@@ -49,11 +49,23 @@ class GalleryRepository extends ServiceEntityRepository
     /**
      * @return Gallery[]
      */
-    public function lastFive(): array
+    public function lastNine(): array
     {
         return $this->createQueryBuilder('g')
             ->orderBy('g.id', 'DESC')
             ->setMaxResults(9)
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @return Gallery[]
+     */
+    public function lastThree(): array
+    {
+        return $this->createQueryBuilder('g')
+            ->orderBy('g.id', 'DESC')
+            ->setMaxResults(3)
             ->getQuery()
             ->getResult();
     }
