@@ -16,6 +16,9 @@ class BookingType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $a = date('Y', strtotime('+3years'));
+
+
         $builder
             ->add('establishment', EntityType::class, [
                 'class' => Establishment::class,
@@ -29,8 +32,16 @@ class BookingType extends AbstractType
                 'data_class' => null,
                 'empty_data' => '',
             ])
-            ->add('date_debut', DateType::class)
-            ->add('date_fin', DateType::class)
+            ->add('date_debut', DateType::class, [
+                'years' => range(date('Y'), date('Y', strtotime('+3years'))),
+                'months' => range(date('m'), 12),
+                'days' => range(date('d'), 31),
+            ])
+            ->add('date_fin', DateType::class, [
+                'years' => range(date('Y'), date('Y', strtotime('+3years'))),
+                'months' => range(date('m'), 12),
+                'days' => range(date('d', strtotime('+1day')), 31),
+            ])
             ->add('check_availability', SubmitType::class)
         ;
     }

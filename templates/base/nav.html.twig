@@ -1,32 +1,39 @@
 <nav class="navbar navbar-expand-lg py-3 sticky-top navbar-light bg-white">
     <div class="container-fluid">
-        <a href="{{ path('app_home') }}" class="navbar-brand logo">HYPNOS Group Hotelier</a>
+        <a href="{{ path('app_home') }}" class="navbar-brand logo">{{ 'HYPNOS Group Hotelier'|trans }}</a>
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto">
-                <a href="{{ path('app_home') }}" class="nav-item nav-link active">Home</a>
-                <a href="{{ path('app_establishment') }}" class="nav-item nav-link">Establishment</a>
+                <a href="{{ path('app_home') }}" class="nav-item nav-link active">{{ 'Home'|trans }}</a>
+                <a href="{{ path('app_establishment') }}" class="nav-item nav-link">{{ 'Establishment'|trans }}</a>
                 {% if app.user %}
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Profile</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{ 'Profile'|trans }}</a>
                         <div class="dropdown-menu">
-                            <a href="{{ path('app_infos') }}" class="dropdown-item">Infos</a>
-                            <a href="{{ path('app_history') }}" class="dropdown-item">Reservations</a>
+                            <a href="{{ path('app_infos') }}" class="dropdown-item">{{ 'Infos'|trans }}</a>
+                            <a href="{{ path('app_history') }}" class="dropdown-item">{{ 'Booking'|trans }}</a>
                         </div>
                     </div>
                 {% endif %}
-                <a href="{{ path('app_home', {'_fragment': 'about'}) }}" class="nav-item nav-link" tabindex="-1">About Us</a>
+                <a href="{{ path('app_home', {'_fragment': 'about'}) }}" class="nav-item nav-link" tabindex="-1">
+                    {{ 'About us'|trans }}
+                </a>
             </div>
             <div class="navbar-nav ms-auto">
-                <a href="{{ path('app_contact') }}" class="nav-item nav-link">Contact</a>
+                <a href="{{ path('app_contact') }}" class="nav-item nav-link">{{ 'Contact us'|trans }}</a>
                 {% if app.user %}
-                    <a href="{{ path('app_logout') }}" class="nav-item nav-link">Logout</a>
+                    <a href="{{ path('app_logout') }}" class="nav-item nav-link">{{ 'Lougout'|trans }}</a>
                 {% else %}
-                    <a href="{{ path('app_login') }}" class="nav-item nav-link">Login</a>
+                    <a href="{{ path('app_login') }}" class="nav-item nav-link">{{ 'Login'|trans }}</a>
                 {% endif %}
             </div>
+            {% for locale in locales %}
+                {% if locale != app.request.locale %}
+                    <a href="{{ path('app_locale', {'locale': locale}) }}">{{ locale }}</a>
+                {% endif %}
+            {% endfor %}
         </div>
     </div>
 </nav>

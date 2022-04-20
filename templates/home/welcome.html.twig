@@ -3,9 +3,21 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-7 mx-auto text-center">
-                <h1 class="display-4 text-white">HYPNOS Groupe Hôtelier</h1>
-                <p class="text-white my-4">text introduction</p>
-                <a href="{{ path('app_home', {'_fragment': 'about'}) }}" class="btn btn-warning">See More</a>
+                <h1 class="display-4 text-white">{{ 'HYPNOS Group Hotelier'|trans }}</h1>
+                <p class="text-white my-4">
+                    {% trans %}
+                        A sharp selection of exceptional and authentic hotels,
+                    {% endtrans %}
+                    {% trans %}
+                        guaranteeing luxurious experiences with unique charm.
+                    {% endtrans %}
+                    {% trans %}
+                        And take advantage of personalized and caring service in our many exceptional suites.
+                    {% endtrans %}
+                </p>
+                <a href="{{ path('app_home', {'_fragment': 'about'}) }}" class="btn btn-warning">
+                    {{ 'See More'|trans }}
+                </a>
             </div>
         </div>
     </div>

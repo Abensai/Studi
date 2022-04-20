@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Suite{% endblock %}
+{% block title %}{{ 'Suite'|trans }}{% endblock %}
 
 {% block body %}
-    <section id="suite" class="row w-100 py-0 suite bg-light">
+    <section id="establishment" class="row w-100 py-0 establishment bg-light">
         <div class="col-lg-6">
             <img class="col-img" src="{{ establishment.image }}" alt="{{ establishment.nom }}">
         </div>
@@ -12,7 +12,7 @@
                 <div class="row">
                     <div class="col-md-10 offset-md-1">
                         <h1>{{ establishment.nom }}</h1>
-                        <h6>ESTABLISHMENT</h6>
+                        <h3>{{ 'ESTABLISHMENT'|trans }}</h3>
                         <p>{{ establishment.description }}</p>
                         <div class="display-view">
                             {% for service in services %}
@@ -35,17 +35,14 @@
         </div>
     </section>
 
-
-    <section id="suits" class="suite bg-light">
+    <section id="suites" class="suite bg-light">
         <div class="container">
             <div class="row mb-5">
                 <div class="col-md-8 mx-auto text-center">
-                    <h2>Our Suites</h2>
-                    <h6 class="label-section">SUITE</h6>
-                    <p>Expedita qui voluptatem omnis id iure. Eos eligendi non repellat
-                        qui velit impedit alias. Ea hic autem dolores dolores. Omnis fugit et
-                        laudantium ut ex. Nisi omnis nesciunt quae porro. Ut et similique iste
-                        expedita in.
+                    <h2>{{ 'Our Suites'|trans }}</h2>
+                    <h3 class="label-section">{{ 'SUITE'|trans }}</h3>
+                    <p>
+                        {{ 'value_team'|trans }}
                     </p>
                 </div>
             </div>
@@ -55,13 +52,6 @@
                     <img src="{{ suite.image }}" class="card-img-top" alt="{{ suite.titre }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ suite.titre }}</h5>
-                        {% if suite.disponibilite == 1 %}
-                            <em class="fa-solid fa-building-circle-check text-success"></em>
-                            <span class="text-success"> Available</span>
-                        {% else %}
-                            <em class="fa-solid fa-building-circle-xmark text-danger"></em>
-                            <span class="text-danger"> Unavailable</span>
-                        {% endif %}
                         <p class="card-text">{{ suite.description }}</p>
                     </div>
                     <button type="button"
@@ -70,7 +60,7 @@
                             data-bs-toggle="modal"
                             data-bs-target="#bookingModal"
                             onclick="document.getElementById('bookingModal').style.display='block'">
-                        Booking
+                        {{ 'Booking'|trans }}
                     </button>
                 </div>
                 {% endfor %}

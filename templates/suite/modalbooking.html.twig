@@ -3,186 +3,60 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Booking </h5>
+                <h5 class="modal-title" id="exampleModalLabel">{{ 'Booking'|trans }}</h5>
                 {% if app.user %}
-                    <input type="hidden" id="status_auth" name="status_auth"
-                           value="isLogged"
+                    <input type="hidden" id="status_auth" name="status_auth" value="isLogged"
                     >
                 {% endif %}
             </div>
             <div class="modal-body">
-                <section class="booking">
-                    <div class="container">
 
-                        {{ form_start(form_booking) }}
+                {{ form_start(form_booking) }}
 
-                        {% for message in app.flashes('success') %}
-                            <div class="alert alert-success">
-                                {{ message }}
-                            </div>
-                        {% endfor %}
-
-                        <div class="my-custom-class-for-errors">
-                            {{ form_errors(form_booking) }}
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">
+                            {{ message }}
                         </div>
+                    {% endfor %}
 
-                        <div class="form-group mb-2">
-                            <label class="form-label" for="bookingEstablishment">
-                                {{ form_label(form_booking.establishment) }}
-                            </label>
-                            {{ form_widget(form_booking.establishment) }}
-                        </div>
-
-                        <div class="form-group mb-2">
-                            <label class="form-label" for="bookingSuite">
-                                {{ form_label(form_booking.suite) }}
-                            </label>
-                            {{ form_widget(form_booking.suite) }}
-                        </div>
-
-                        <div class="form-group mb-2">
-                            <label class="form-label" for="bookingDateStart">
-                                {{ form_label(form_booking.date_debut) }}
-                            </label>
-                            {{ form_widget(form_booking.date_debut) }}
-                        </div>
-
-                        <div class="form-group mb-2">
-                            <label class="form-label" for="bookingDateEnd">
-                                {{ form_label(form_booking.date_fin) }}
-                            </label>
-                            {{ form_widget(form_booking.date_fin) }}
-                        </div>
-
-                        <div class="form-group mb-0">
-                            {{ form_widget(form_booking.check_availability, {'attr': {'class': 'js-suites'}}) }}
-                        </div>
-
+                    <div class="my-custom-class-for-errors">
+                        {{ form_errors(form_booking) }}
                     </div>
-                    <div class="response-availability text-center mt-5"></div>
-                </section>
+
+                    <div class="form-group mb-2">
+                        {{ form_label(form_booking.establishment) }}
+                        {{ form_widget(form_booking.establishment) }}
+                    </div>
+
+                    <div class="form-group mb-2">
+                        {{ form_label(form_booking.suite) }}
+                        {{ form_widget(form_booking.suite) }}
+                    </div>
+
+                    <div class="form-group mb-2">
+                        {{ form_label(form_booking.date_debut) }}
+                        {{ form_widget(form_booking.date_debut) }}
+                    </div>
+
+                    <div class="form-group mb-2">
+                        {{ form_label(form_booking.date_fin) }}
+                        {{ form_widget(form_booking.date_fin) }}
+                    </div>
+
+                    <div class="form-group mb-0">
+                        {{ form_widget(form_booking.check_availability, {'attr': {'class': 'js-suites'}}) }}
+                    </div>
+
+                {{ form_end(form_booking) }}
+
+                <div class="response-availability text-center mt-5"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary js-suites-close" data-bs-dismiss="modal">Cancel</button>
             </div>
-            {{ form_end(form_booking) }}
         </div>
     </div>
 </div>
 {% block javascripts %}
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script><!-- Compliant: integrity value should be replaced with the digest of the expected resource -->
-    <script>
-        //disable select suite and establishment
-        const selectEstablishment = document.getElementById('booking_establishment');
-        const selectSuite = document.getElementById('booking_suite');
-
-        selectEstablishment.setAttribute('disabled', '');
-        selectSuite.setAttribute('disabled', '');
-
-        // pre fill select suite
-        if (document.body.addEventListener){
-            document.body.addEventListener('click',yourHandler,false);
-        }
-
-        function yourHandler(e){
-            let target = e.target;
-            if (target.className.match('.btn-booking'))
-            {
-                const $select = document.querySelector('#booking_suite');
-                $select.value =  e.target.dataset.id;
-            }
-        }
-    </script>
-    <script>
-        // check availability suite
-        window.addEventListener("load", function() {
-            document.querySelector("button.js-suites").addEventListener("click", getAvailabilitySuite);
-            document.querySelector("button.js-suites-close").addEventListener("click", quitBooking);
-        });
-
-        function getAvailabilitySuite (event) {
-            event.preventDefault();
-            let url = "/suite";
-
-            axios.get(url).then(response => {
-                const divAvailability = document.querySelector("div.response-availability");
-                const idSuite = parseInt(document.querySelector("#booking_suite").value);
-                let statusAvailability = 0;
-                response.data.forEach(({availability, id}) => {
-                    if(id === idSuite){
-                        const nodeStatus = document.createElement("div");
-                        const nodeLink = document.createElement("a");
-                        if (availability === true) {
-                            statusAvailability = 1;
-                            nodeStatus.classList.add("text-success");
-                            nodeStatus.classList.add("ajax");
-                            nodeStatus.classList.add("ml-3");
-                            nodeStatus.textContent = "This Suite is available";
-
-                            let statusAuth = authStatus();
-                            if(statusAuth === 'isLogged') {
-                                nodeLink.textContent = "Confirm your reservation"
-                                nodeLink.href = "/dashboard";
-                            } else {
-                                nodeLink.textContent = "register you to validate your reservation: register";
-                                nodeLink.href = "/register";
-                            }
-
-                            divAvailability.appendChild(nodeStatus);
-                            divAvailability.appendChild(nodeLink);
-                            setCookie(1, statusAvailability);
-                        } else {
-                            nodeStatus.classList.add("text-danger");
-                            nodeStatus.classList.add("ajax");
-                            nodeStatus.textContent = 'This suite is unavailable. check other suite';
-                        }
-                        divAvailability.appendChild(nodeStatus);
-                    }
-                });
-            });
-        }
-
-        function quitBooking () {
-            if(document.querySelector("span.ajax")) {
-                const check = document.querySelector("div.response-availability");
-                check.removeChild(check.firstElementChild);
-            }
-        }
-
-        function authStatus () {
-            let paramAuth = document.getElementById("status_auth");
-            let statusAuth = 'notLogged';
-
-            if(paramAuth) {
-                statusAuth = paramAuth.value;
-            }
-
-            return statusAuth;
-        }
-
-        function setCookie(exDays, statusAvailability) {
-            const d = new Date();
-            d.setTime(d.getTime() + (exDays*24*60*60*1000));
-            let expires = "expires="+ d.toUTCString();
-
-            let cName = "dataBooking";
-            let cValue = new Array(5);
-
-            let dateStart = document.querySelector("#booking_date_debut_year").value + "/" +
-                document.querySelector("#booking_date_debut_month").value + "/" +
-                document.querySelector("#booking_date_debut_day").value;
-
-            let dateEnd = document.querySelector("#booking_date_fin_year").value + "/" +
-            document.querySelector("#booking_date_fin_month").value + "/" +
-            document.querySelector("#booking_date_fin_day").value;
-
-            cValue[0] = document.querySelector("#booking_establishment").value;
-            cValue[1] = document.querySelector("#booking_suite").value;
-            cValue[2] = dateStart;
-            cValue[3] = dateEnd;
-            cValue[4] = statusAvailability;
-
-            document.cookie = cName + "=" + cValue + ";" + expires + ";path=/";
-        }
-    </script>
+    {{ encore_entry_script_tags('booking') }}
 {% endblock %}

@@ -1,22 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Last Booking{% endblock %}
+{% block title %}{{ 'Last Booking'|trans }}{% endblock %}
 
 {% block body %}
     <section>
         <div class="container">
-            <h1>Last Booking</h1>
+            <h1>{{ 'Last Booking'|trans }}</h1>
 
             <table class="table">
-                <caption>The last 3 booking</caption>
+                <caption>{{ 'The last 3 booking'|trans }}</caption>
                 <thead>
                 <tr>
-                    <th>Establishment</th>
-                    <th>Suite</th>
-                    <th>Date_debut</th>
-                    <th>Date_fin</th>
-                    <th>Prix</th>
-                    <th>actions</th>
+                    <th>{{ 'Establishment'|trans }}</th>
+                    <th>{{ 'Suite'|trans }}</th>
+                    <th>{{ 'Date_debut'|trans }}</th>
+                    <th>{{ 'Date_fin'|trans }}</th>
+                    <th>{{ 'Prix'|trans }}</th>
+                    <th>{{ 'actions'|trans }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -37,12 +37,14 @@
                     </tr>
                 {% else %}
                     <tr>
-                        <td colspan="5">no records found</td>
+                        <td colspan="5">{{ 'no records found'|trans }}</td>
                     </tr>
                 {% endfor %}
                 </tbody>
             </table>
-            <p>you have three days before the start reservation to modify date or cancel it</p>
+            <div>
+                <p>{{ 'you have three days before the start reservation to modify date or cancel it'|trans }}</p>
+            </div>
         </div>
     </section>
 {% endblock %}

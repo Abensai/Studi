@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}{{ 'Log in!'|trans }}{% endblock %}
 
 {% block body %}
     <section>
@@ -9,25 +9,26 @@
                 {% if error %}
                     <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
-
-                {% if app.user %}
-                    <h6 class="mb-3">You are Connected as {{ last_username }} !
-                        <a href="{{ path('app_logout') }}">Logout</a>
-                    </h6>
-                {% else %}
-                    <h1 class="h3 mt-5 mb-3 font-weight-normal">Please sign in</h1>
+                {% if not app.user %}
+                    <h1 class="h3 mt-5 mb-3 font-weight-normal">{{ 'Please sign in'|trans }}</h1>
                     <label for="inputEmail">Email</label>
-                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" required autofocus>
-                    <label for="inputPassword">Password</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control"
+                           required autofocus>
+                    <label for="inputPassword">{{ 'Password'|trans }}</label>
                     <input type="password" name="password" id="inputPassword" class="form-control" required>
 
                     <input type="hidden" name="_csrf_token"
                            value="{{ csrf_token('authenticate') }}"
                     >
 
-                    <button class="btn btn-lg btn-register mb-3" type="submit">Sign in</button>
+                    <button class="btn btn-lg btn-register mb-3" type="submit">{{ 'Sign in'|trans }}</button>
                     <div class="mb-5">
-                        <a href="{{ path('app_register') }}">you are not registered?</a>
+                        <a href="{{ path('app_register') }}">{{ 'you are not registered?'|trans }}</a>
+                    </div>
+                {% else %}
+                    <div class="mb-3">
+                        {{ 'You are Connected as'|trans }} {{ last_username }} !
+                        <a href="{{ path('app_logout') }}">{{ 'Logout'|trans }}</a>
                     </div>
                 {% endif %}
             </form>

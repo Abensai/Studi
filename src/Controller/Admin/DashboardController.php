@@ -13,16 +13,22 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractDashboardController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class DashboardController extends AbstractDashboardController
 {
     private AuthenticationUtils $authenticationUtils;
     private UserRepository $userRepository;
+    private TranslatorInterface $translator;
 
-    public function __construct(AuthenticationUtils $authenticationUtils, UserRepository $userRepository)
-    {
+    public function __construct(
+        AuthenticationUtils $authenticationUtils,
+        UserRepository $userRepository,
+        TranslatorInterface $translator
+    ) {
         $this->authenticationUtils = $authenticationUtils;
         $this->userRepository = $userRepository;
+        $this->translator = $translator;
     }
 
     /**
@@ -35,8 +41,10 @@ class DashboardController extends AbstractDashboardController
 
     public function configureDashboard(): Dashboard
     {
+        $title = $this->translator->trans('HYPNOS Group Hotelier');
+
         return Dashboard::new()
-            ->setTitle('Hypnos Group Hotel');
+            ->setTitle($title);
     }
 
     /**
