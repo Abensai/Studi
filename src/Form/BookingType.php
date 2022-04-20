@@ -14,11 +14,11 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class BookingType extends AbstractType
 {
+    private const THREE_YEARS = '+3years';
+    private const ONE_DAY = '+1day';
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $a = date('Y', strtotime('+3years'));
-
-
         $builder
             ->add('establishment', EntityType::class, [
                 'class' => Establishment::class,
@@ -33,14 +33,14 @@ class BookingType extends AbstractType
                 'empty_data' => '',
             ])
             ->add('date_debut', DateType::class, [
-                'years' => range(date('Y'), date('Y', strtotime('+3years'))),
+                'years' => range(date('Y'), date('Y', strtotime(self::THREE_YEARS))),
                 'months' => range(date('m'), 12),
                 'days' => range(date('d'), 31),
             ])
             ->add('date_fin', DateType::class, [
-                'years' => range(date('Y'), date('Y', strtotime('+3years'))),
+                'years' => range(date('Y'), date('Y', strtotime(self::THREE_YEARS))),
                 'months' => range(date('m'), 12),
-                'days' => range(date('d', strtotime('+1day')), 31),
+                'days' => range(date('d', strtotime(self::ONE_DAY)), 31),
             ])
             ->add('check_availability', SubmitType::class)
         ;
