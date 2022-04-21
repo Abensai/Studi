@@ -6,6 +6,7 @@ use App\Entity\Booking;
 use App\Form\BookingUpdateType;
 use App\Repository\BookingRepository;
 use App\Repository\UserRepository;
+use Doctrine\ORM\NonUniqueResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,7 +20,7 @@ class BookingController extends AbstractController
 {
     /**
      * @Route("/", name="app_booking_index", methods={"GET"})
-     * @throws \Doctrine\ORM\NonUniqueResultException
+     * @throws NonUniqueResultException
      */
     public function index(BookingRepository $bookingRepository,
                           UserRepository $userRepository,

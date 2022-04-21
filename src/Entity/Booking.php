@@ -20,17 +20,12 @@ class Booking
     /**
      * @ORM\Column(type="datetime")
      *
-     * @Assert\GreaterThan("today")
      */
     private $date_debut;
 
     /**
      * @ORM\Column(type="datetime")
      *
-     * @Assert\Expression(
-     * "this.getDateDebut() < this.getDateFin()",
-     * message="La date fin ne doit pas être antérieure à la date début"
-     *  )
      */
     private $date_fin;
 

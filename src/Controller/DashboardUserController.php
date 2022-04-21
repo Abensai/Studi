@@ -48,7 +48,7 @@ class DashboardUserController extends AbstractController
             $form = $this->createForm(BookingType::class, $booking);
             $form->handleRequest($request);
 
-            if ($form->isSubmitted()) {
+            if ($form->isSubmitted() && $form->isValid()) {
                 $validateBooking = $form->getData();
 
                 $bookingService->persistBooking($validateBooking);
