@@ -7,6 +7,9 @@
         <div class="collapse navbar-collapse" id="navbarCollapse">
             <div class="navbar-nav ms-auto">
                 <a href="{{ path('app_home') }}" class="nav-item nav-link active">{{ 'Home'|trans }}</a>
+                <a href="{{ path('app_home', {'_fragment': 'about'}) }}" class="nav-item nav-link" tabindex="-1">
+                    {{ 'About us'|trans }}
+                </a>
                 <a href="{{ path('app_establishment') }}" class="nav-item nav-link">{{ 'Establishment'|trans }}</a>
                 {% if app.user %}
                     <div class="nav-item dropdown">
@@ -17,9 +20,6 @@
                         </div>
                     </div>
                 {% endif %}
-                <a href="{{ path('app_home', {'_fragment': 'about'}) }}" class="nav-item nav-link" tabindex="-1">
-                    {{ 'About us'|trans }}
-                </a>
             </div>
             <div class="navbar-nav ms-auto">
                 <a href="{{ path('app_contact') }}" class="nav-item nav-link">{{ 'Contact us'|trans }}</a>
