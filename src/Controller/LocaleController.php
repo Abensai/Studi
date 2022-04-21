@@ -12,7 +12,7 @@ class LocaleController extends AbstractController
     /**
      * @Route("/change_locale/{locale}", name="app_locale")
      */
-    public function changeLocale($locale, Request $request): Response
+    public function changeLocale(Request $request, $locale): Response
     {
         $request->getSession()->set('_locale', $locale);
 

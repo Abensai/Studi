@@ -5,18 +5,17 @@ namespace App\EventSubscriber;
 use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
-use Symfony\Component\HttpKernel\KernelEvents;
 
 class LocaleSubscriber implements EventSubscriberInterface
 {
     private mixed $defaultLocale;
 
-    public function __construct($defaultLocale = 'fr')
+    public function __construct($defaultLocale = 'en')
     {
         $this->defaultLocale = $defaultLocale;
     }
 
-    public function onKernelRequest(RequestEvent $event)
+    public function onRequestEvent(RequestEvent $event)
     {
         $request = $event->getRequest();
         if (!$request->hasPreviousSession()) {
@@ -29,11 +28,11 @@ class LocaleSubscriber implements EventSubscriberInterface
         }
     }
 
-    #[ArrayShape([KernelEvents::REQUEST => 'array[]'])]
+    #[ArrayShape([RequestEvent::class => 'array[]'])]
      public static function getSubscribedEvents(): array
      {
          return [
-                KernelEvents::REQUEST => [['onKernelRequest', 20]],
+                RequestEvent::class => [['onRequestEvent', 20]],
             ];
      }
 }
