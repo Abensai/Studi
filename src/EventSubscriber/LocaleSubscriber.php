@@ -2,7 +2,6 @@
 
 namespace App\EventSubscriber;
 
-use JetBrains\PhpStorm\ArrayShape;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 
@@ -28,11 +27,10 @@ class LocaleSubscriber implements EventSubscriberInterface
         }
     }
 
-    #[ArrayShape([RequestEvent::class => 'array[]'])]
-     public static function getSubscribedEvents(): array
-     {
-         return [
+    public static function getSubscribedEvents(): array
+    {
+        return [
                 RequestEvent::class => [['onRequestEvent', 20]],
             ];
-     }
+    }
 }
